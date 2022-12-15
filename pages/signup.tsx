@@ -17,9 +17,7 @@ export default function signup() {
 
     return (
 
-
-
-        <div className="h-screen w-screen row">
+        <div className="h-full w-full row">
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
@@ -38,7 +36,7 @@ export default function signup() {
                     <div className="col-4 text-left ">
                         <h1 className="text-white pt-32 pl-16">中央大學<br></br>場地預約網</h1>
                     </div>
-                    <div className="col-8 rounded-bl-lg rounded-tl-lg bg-white ">
+                    <div className="col-8 rounded-bl-lg rounded-tl-lg bg-white z-10 h-full w-full">
 
                         <h2 className="text-theme pt-8 pl-24 ">Sign Up</h2>
 
@@ -98,8 +96,6 @@ export default function signup() {
 
                 </div>
             </div >
-
-
 
         </div >
     );
