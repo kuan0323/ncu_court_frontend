@@ -6,7 +6,7 @@ import Button from '../components/Button'
 
 export default function Home() {
   return (
-    <>
+    
     
     <div className="grid grid-cols-2 ">
       <div className=" col-span-2 text-center bg-background p-8">
@@ -79,6 +79,6 @@ export default function Home() {
     </div>
       </div>
     
-   </>
+   
    );
   }
