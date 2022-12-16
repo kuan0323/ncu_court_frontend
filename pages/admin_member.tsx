@@ -9,7 +9,7 @@ export default function admin_member() {
         <div className="w-60 h-full shadow-md bg-[#69CBBF] px-1 absolute">
         <ul className="relative">
           <li className="relative">
-            <a className="flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">會員管理</a>
+            <a className="flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="admin_member" data-mdb-ripple="true" data-mdb-ripple-color="dark">會員管理</a>
           </li>
           <li className="relative">
             <a className="flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">管理員管理</a>
@@ -18,7 +18,7 @@ export default function admin_member() {
             <a className="flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">預約紀錄管理</a>
           </li>
           <li className="relative">
-            <a className="flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">場地管理</a>
+            <a className="flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="admin_court" data-mdb-ripple="true" data-mdb-ripple-color="dark">場地管理</a>
           </li>
         </ul>
         <div className="flex space-x-2 justify-center">
@@ -31,7 +31,7 @@ export default function admin_member() {
       <section>
       
       <div className="flex flex-col ml-60">
-        <h2 className="text-lg text-gray-700 ml-5 mt-5">瀏覽場地</h2>
+        <h2 className="text-lg text-gray-700 ml-5 mt-5">瀏覽會員</h2>
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
