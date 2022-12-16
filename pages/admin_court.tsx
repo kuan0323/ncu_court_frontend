@@ -1,7 +1,9 @@
-export default function admin_court(){
-    return(
-
-        <><div className="w-60 h-full shadow-md bg-[#69CBBF] px-1 absolute">
+export default function admin_member() {
+    return( 
+        <div className="md:flex-row">
+        <div>
+        <nav>
+        <div className="w-60 h-full shadow-md bg-[#69CBBF] px-1 absolute">
         <ul className="relative">
           <li className="relative">
             <a className="flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-100 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">會員管理</a>
@@ -19,65 +21,66 @@ export default function admin_court(){
         <div className="flex space-x-2 justify-center">
           <button type="button" className="inline-block px-6 py-2.5 bg-[#40948A] text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-gray-100 hover:shadow-lg focus:bg-gray-100 focus:shadow-lg focus:outline-none rounded-full focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">登出</button>
         </div>
-      </div>
-
-      <div className="flex flex-col ml-60">
-        <h2 className="text-lg text-gray-700 ml-5 mt-5">新增場地</h2>
-        
-        <div className="flex justify-start">
-          <div className="mb-3 xl:w-96">
-            <label htmlFor="exampleText0" className="form-label inline-block mb-2 text-gray-700 ml-5 mt-5">場地名稱</label>
-            <input type="text"
-              className="
-                form-control
-                block
-                w-full
-                px-3
-                py-1.5
-                ml-5 
-                text-base
-                font-normal
-               text-gray-700
-               bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-               focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
-              id="exampleText0"
-              placeholder="場地名稱"/>
-            </div>
-          </div>
-
-          <div className="flex justify-start">
-          <div className="mb-3 xl:w-96">
-            <label htmlFor="exampleText0" className="form-label inline-block mb-2 text-gray-700 ml-5 mt-1">場地費用</label>
-            <input type="number"
-              className="
-                form-control
-                block
-                w-full
-                px-3
-                py-1.5
-                ml-5 
-                text-base
-                font-normal
-               text-gray-700
-               bg-white bg-clip-padding
-                border border-solid border-gray-300
-                rounded
-                transition
-                ease-in-out
-                m-0
-               focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
-              id="exampleText0"
-              placeholder="場地費用"/>
-            </div>
-          </div>
-      </div>
-
+        </div>
+        </nav>
+        </div>
       
-      </>
+      <section>
+      
+      <div className="flex flex-col ml-60">
+
+        <div>
+            <h2 className="inline-block text-lg text-gray-700 ml-5 mt-5">瀏覽場地</h2>
+            <button type="button" className="inline-block ml-5 px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">新增場地</button>
+        </div>
+       
+
+          <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+              <div className="overflow-hidden">
+
+                <table className="min-w-full">
+                  <thead className="border-b">
+                    <tr>
+                      <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        場地名稱
+                      </th>
+                      <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        場地類別
+                      </th>
+                      <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        場地費用
+                      </th>
+                      <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                        操作
+                      </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr className="border-b">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> </td>
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <div className="flex space-x-4 ">
+                             <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除</button>
+                             <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">修改</button>
+                             <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">留言管理</button>
+                             </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        </section>
+
+        </div>
+
     )
 }
