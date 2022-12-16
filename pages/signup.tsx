@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 
 import styles from '../styles/signup.module.css'
 import Head from "next/head";
-
+import Image from 'next/image'
 
 export default function signup() {
 
@@ -32,11 +32,19 @@ export default function signup() {
 
             <div className="container">
 
+                <Image
+                    src="/../public/static/images/kid.png"
+                    alt="kid"
+                    width={330}
+                    height={320}
+                    className="z-3 position-absolute bottom-3.5 left-40"
+                />
+
                 <div className="row ">
                     <div className="col-4 text-left ">
                         <h1 className="text-white pt-32 pl-16">中央大學<br></br>場地預約網</h1>
                     </div>
-                    <div className="col-8 rounded-bl-lg rounded-tl-lg bg-white z-10 h-full w-full">
+                    <div className="col-8 rounded-bl-xl rounded-tl-xl bg-white z-10 h-full w-full">
 
                         <h2 className="text-theme pt-8 pl-24 ">Sign Up</h2>
 

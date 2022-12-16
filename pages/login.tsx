@@ -4,6 +4,7 @@ import AuthService from "../services/authService";
 import Cookies from 'js-cookie';
 
 import Head from "next/head";
+import Image from 'next/image'
 
 export default function login() {
 
@@ -24,11 +25,18 @@ export default function login() {
 
             <div className="container ">
 
+                <Image
+                    src="/../public/static/images/kid.png"
+                    alt="kid"
+                    width={330}
+                    height={320}
+                    className="z-3 position-absolute bottom-3.5 left-40"
+                />
                 <div className="row ">
                     <div className="col-4 text-left ">
                         <h1 className="text-white pt-32 pl-16">中央大學<br></br>場地預約網</h1>
                     </div>
-                    <div className="col-8 rounded-bl-lg rounded-tl-lg bg-white z-10 h-screen" >
+                    <div className="col-8 rounded-bl-xl rounded-tl-xl bg-white z-10 h-screen" >
 
                         <h2 className="text-theme pt-32 pl-24 ">Log In</h2>
 
