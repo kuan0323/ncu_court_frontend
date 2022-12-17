@@ -6,8 +6,11 @@ import Cookies from 'js-cookie';
 export default function Login () {
 
     const loginHandler = async () => {
-        await AuthService.login('', '');
-        Cookies.set('service_token', 'def');
+
+        const a = await AuthService.login('111', 'a');
+        // console.log(typeof a);
+        Cookies.set('service_token', a);
+        return a;
     }
 
     return (
@@ -15,7 +18,7 @@ export default function Login () {
             <p style={{marginTop: 10, color: 'red'}}>jioquwheio</p>
             <AppBar value={'example value'}><p>example children</p></AppBar>
             <div>login page</div>
-            <button onClick={() => loginHandler()}>Login</button>
+            <button onClick={loginHandler()}>Login</button>
         </div>
     );
 }

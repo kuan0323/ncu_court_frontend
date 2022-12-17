@@ -8,6 +8,6 @@ export default class AuthService {
             studentId: studentId,
             password: password
         });
-        return response.data;
+        return response.data.serviceToken;
     }
 }
