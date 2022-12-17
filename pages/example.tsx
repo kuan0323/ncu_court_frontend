@@ -1,62 +1,57 @@
-import Head from 'next/head'
+import React, { Component } from 'react';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 import Image from 'next/image'
-import AppBar from '../components/AppBar'
-import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
 
 
-export default function Home() {
-  return (
 
-<div id="indicators-carousel" className="relative text-white bg-background" data-carousel="static">
-    {/*<!-- Carousel wrapper --> */}
-    <div className="text-white relative h-56 overflow-hidden rounded-lg md:h-96">
-         {/*<!-- Item 1 --> */}
-        <div className="hidden duration-700 ease-in-out" data-carousel-item="active">
-            <Image src="/../public/static/images/e籃球.png" width={330} height={320} className="text-white absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="basketball"/>
+export default class NextJsCarousel extends Component {
+	render() {
+		return (
+            <div className="grid grid-col">
+                <div className=" col-span-2 text-center bg-background p-8">
+                    <Button value = {'我的預約'} ></Button>
+                    <Button value = {'中央大學場地預約網'}></Button>
+                    <Button value = {'我的帳戶'}></Button>
+                    <button type="button" className="text-right hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ">
+                    登出
+                    </button>
+                </div>
+                <div className = "h-16 text-background col-span-2 text-center">
+                    <style jsx global>
+                    {`
+                        body {background :#ffffff;}
+                    `}
+                    </style>
+                    {/*<h2>NextJs Carousel - GeeksforGeeks</h2>*/}
 
-            {/*<Image src="/../public/static/images/籃球.png" alt="basketball" width={330} height={320} className="w-full" />*/}
-        </div>
-        {/*<!-- Item 2 -->*/}
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-            <Image src="/../public/static/images/羽球.png" alt="basketball" width={330} height={320} className="w-full" />
-        </div>
-        {/*<!-- Item 3 --> */}
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-            <Image src="/../public/static/images/網球.png" alt="basketball" width={330} height={320} className="w-full" />
-        </div>
-        {/*<!-- Item 4 --> */}
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-            <Image src="/../public/static/images/排球.png" alt="basketball" width={330} height={320} className="w-full" />
-        </div>
-        {/*<!-- Item 5 --> */}
-        <div className="hidden duration-700 ease-in-out" data-carousel-item>
-            <Image src="/../public/static/images/羽球.png" alt="basketball" width={330} height={320} className="w-full" />
-        </div>
-    </div>
-    {/*<!-- Slider indicators --> */}
-    <div className="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
-        <button type="button" className="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
-    </div>
-    {/*<!-- Slider controls -->*/}
-    <button type="button" className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg aria-hidden="true" className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            <span className="sr-only">Previous</span>
-        </span>
-    </button>
-    <button type="button" className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-        <span className="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg aria-hidden="true" className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            <span className="sr-only">Next</span>
-        </span>
-    </button>
-</div>
+                    <Carousel >
+                        <div>
+                            <Image src="/../public/static/images/籃球.png" alt="basketball" width={330} height={320} className="w-full" />
+                            {/*<p className="legend">Image 1</p>*/}
 
-        );
-    }
-  
+                        </div>
+                        <div>
+                            <Image src="/../public/static/images/羽球.png"alt="badminton" width={330} height={320}  className="w-full" />
+                            {/*<p className="legend">Image 2</p>*/}
+
+                        </div>
+                        <div>
+                            <Image src="/../public/static/images/網球.png"alt="tennis" width={330} height={320}  className="w-full" />    
+                            {/*<p className="legend">Image 3</p>*/}
+
+                        </div>
+                        <div>
+                            <Image src="/../public/static/images/排球.png"alt="volley" width={330} height={320}  className="w-full" />    
+                            {/*<p className="legend">Image 4</p>*/}
+
+                        </div>
+                    </Carousel>
+			    </div>
+                
+            </div>
+			
+		);
+	}
+};

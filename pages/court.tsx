@@ -18,7 +18,7 @@ export default function Home() {
           登出
         </button>
       </div>
-      <div className="h-16 text-background col-span-2 text-center">
+        <div className="h-16 text-background col-span-2 text-center">
         <style jsx global>
           {`
             body {background :#ffffff;}
