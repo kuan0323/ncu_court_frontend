@@ -5,7 +5,7 @@ import AppBar from "../components/AppBar";
 import exampleService from "../services/exampleService";
 
 export default function exampleUser () {
-    const [users, setUsers] = useState([]);
+    const [users, setUser] = useState([]);
     // const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         fetchUsers();
@@ -15,7 +15,7 @@ export default function exampleUser () {
         
         const userList = await exampleService.getExample('createdTime', 'regular');
         // console.log("aaaa");
-        setUsers(userList);
+        setUser(userList);
         
     }
 
