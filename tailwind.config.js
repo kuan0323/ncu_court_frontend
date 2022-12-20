@@ -6,13 +6,14 @@ module.exports = {
   ],
 
   theme: {
-    extend: {},
-    colors: {
-      // Configure your color palette here
-      'theme': '#69cbbf',
-      'white': '#ffffff',
+    extend: {
+      colors: {
+        // Configure your color palette here
+        'theme': '#69cbbf',
+        'white': '#ffffff',
+      },
     },
-
+    
     borderRadius: {
       'none': '0',
       'sm': '0.125rem',

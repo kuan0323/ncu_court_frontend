@@ -18,7 +18,7 @@ export default function Login () {
             <p style={{marginTop: 10, color: 'red'}}>jioquwheio</p>
             <AppBar value={'example value'}><p>example children</p></AppBar>
             <div>login page</div>
-            <button onClick={loginHandler()}>Login</button>
+            <button onClick={() => loginHandler()}>Login</button>
         </div>
     );
 }
