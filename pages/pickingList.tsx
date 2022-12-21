@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
-export default function admin_member() {
+export default function pickingList() {
     return (
         <div>
             <div className=" text-xl text-center bg-teal-500">
