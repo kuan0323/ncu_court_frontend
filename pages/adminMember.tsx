@@ -15,14 +15,7 @@ export default function admin_member() {
         setUsers(userList);
     }
 
-    // const user = users.map((a: any) => [a.email]);
-
-
-
     return (
-
-
-
         <div className="md:flex-row">
             <div>
                 <nav>
@@ -54,6 +47,7 @@ export default function admin_member() {
                     <h2 className="text-lg text-gray-700 ml-5 mt-5">瀏覽會員</h2>
                     <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+
                             <div className="overflow-hidden">
 
                                 <table className="min-w-full">
@@ -77,23 +71,20 @@ export default function admin_member() {
                                         </tr>
                                     </thead>
 
-                                    <tbody >
+                                    {
+                                        users.map(
+                                            (a: any) =>
+                                                <tbody >
 
-                                        <tr className="border-b">
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{
-                                                users.map(
-                                                    (a: any) =>
-                                                        <div>{a.name}</div>
-                                                )
-                                            } </td>{/* 姓名 */}
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> <div></div></td>{/* 學號 */}
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>{/* Email */}
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>{/* 電話 */}
-                                            <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除會員</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                                    <tr className="border-b">
+                                                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{a.name}</td>{/* 姓名 */}
+                                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> {a.studentId}<div></div></td>{/* 學號 */}
+                                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> {a.email}</td>{/* Email */}
+                                                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> {a.phone}</td>{/* 電話 */}
+                                                        <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除會員</button>
+                                                    </tr>
+
+                                                </tbody>)}
 
                                 </table>
                             </div>
