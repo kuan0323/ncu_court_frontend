@@ -1,4 +1,4 @@
-export default function admin_court(){
+export default function courtCreate(){
     return(
 
         <div>

@@ -1,4 +1,4 @@
-export default function admin_member() {
+export default function courtShow() {
     return( 
         <div className="md:flex-row">
         <div>
