@@ -9,15 +9,10 @@ import Head from "next/head";
 import Image from 'next/image'
 
 
-
-
 export default function sign_up() {
 
-    UserService.register('Eleanor', '109403034', 'email@gmail.com', '0912345678', '123');
-    const [users, setUsers] = useState([]);
-
     const sign_upHandler = async () => {
-        // console.log("123");
+
         const name_Element = document.getElementById("name");
         const name = name_Element.value;
 
@@ -34,14 +29,7 @@ export default function sign_up() {
         const password = password_Element.value; // 紅字可以不用理它，可以正常運作
 
 
-        const a = await UserService.register('Eleanor', '109403034', 'email@gmail.com', '0912345678', '123');
-
-        // const a = await UserService.register(name, student_id, email, phone, password);
-        // setUsers(a);
-        // console.log(a);
-        // Cookies.set('service_token', a);
-
-        return a;
+        const a = await UserService.register(name, student_id, email, phone, password);
     }
 
     return (
@@ -65,9 +53,6 @@ export default function sign_up() {
             </style>
 
             <div className="container">
-                <div className="grid md:grid-cols-1 ">{/* 確認 */}
-                    <button onClick={() => sign_upHandler()} className=" bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" ><a href="" className="text-decoration-none text-white">確認</a></button>
-                </div>
                 {/* <Image
                     src="/../public/static/images/kid.png"
                     alt="kid"
@@ -84,7 +69,7 @@ export default function sign_up() {
 
                         <h2 className="text-theme pt-8 pl-24 ">Sign Up</h2>
 
-                        <form className="pt-2 pl-24 pb-8 pr-44 ">
+                        <form className="pt-2 pl-24 pb-8 pr-44 " action="signupSuccess">
                             <div className="grid md:grid-cols-1 md:gap-6">{/* 姓名 */}
                                 <div className="relative z-0 mb-6 w-full group">
                                     <input type="text" name="name" id="name" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-t-0 border-r-0 border-l-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
@@ -128,16 +113,13 @@ export default function sign_up() {
                                 </div>
                             </div>
 
-
-                            {/* 還在研究怎麼redirect到新的page */}
                             <div className="grid md:grid-cols-1 ">{/* 確認 */}
-                                <button type="submit" onClick={() => sign_upHandler()} className=" bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" ><a href="" className="text-decoration-none text-white">確認</a></button>
+                                <button type="submit" className=" bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" ><a onClick={() => sign_upHandler()} href="signupSuccess" className="text-decoration-none text-white">確認</a></button>
                             </div>
                             <div className="grid md:grid-cols-1 ">
                                 <button type="button" className="text-theme bg-white font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center "><a href="login" className="text-decoration-none text-theme">已經有帳號?</a></button>
                             </div>
                         </form>
-
                     </div>
 
                 </div>

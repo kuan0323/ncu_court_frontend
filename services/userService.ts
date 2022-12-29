@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 export default class UserService {
 
     static async register(name: string, studentId: string, email: string, phone: string, password: string) {
-        const response = await api().post('/api/users/register', {
+        const response = await api().post('/api/register', {
             name: name,
             studentId: studentId,
             email: email,
