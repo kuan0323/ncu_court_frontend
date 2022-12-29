@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
 import NavBar from "../components/NavBar";
 import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
+import reserveService from "../services/reserveService";
 
 const records = [
     {
@@ -50,15 +53,45 @@ const records = [
     },
 ];
 export default function reserveRecord() {
+    const [users, setUsers] = useState([]);
+    // const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        fetchReserves();
+    }, []);
+    const fetchReserves = async () => {
+
+        const userList = await reserveService.getReservation('109403020');//還要改成動態存取
+        setUsers(userList);
+
+    }
+
+    const cancelHandler = async (courtName:string) => {
+        const cancle = await reserveService.cancelReservation(courtName);
+        window.location.reload();
+    }
+    const checkPickingList = async () => {
+        window.history.pushState(null,'','pickingList');
+    }
+
     return (
         <div>
             <div>
                 <NavBar mainPage={false} myReserve={false} myAccount={false}></NavBar>
             </div>
+
             <div className=" mx-auto max-w-2xl py-8 px-4 sm:py-16 sm:px-6 lg:max-w-7xl lg:px-8">
-                <h2 className="mb-5 text-2xl font-bold tracking-tight text-theme">
-                    預約記錄
-                </h2>
+
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="col-span-1 float-left p-4">
+                        <h2 className="mb-5 text-2xl font-bold tracking-tight text-theme ">
+                            預約記錄
+                        </h2>
+                    </div>
+                    <div className="col-span-1 float-right p-4 ">
+                        <div className="text-sm font-medium text-gray-900 float-right"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => checkPickingList}>查看待選清單</button></div>
+                    </div>
+                </div>
+
                 <div className="bg-gray-400 h-0.5"></div>
 
                 <div className="mt-3 grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-2 lg:grid-cols-1 xl:gap-x-8">
@@ -85,33 +118,35 @@ export default function reserveRecord() {
                                                     操作
                                                 </th>
                                             </tr>
-                                            {records.map((record) => (
+                                            {
+                                                users.map(
+                                                    (user:any) =>
                                                 <tr>
                                                     <td>
-                                                        <img
+                                                        {/* <img
                                                             src={record.photo}
                                                             alt={record.photoAlt}
                                                             className="h-full w-full object-cover object-center lg:h-full lg:w-full text-center"
-                                                        />
+                                                        /> */}
                                                     </td>
                                                     <td>
                                                         <p className="text-sm font-medium text-gray-900 text-center">
-                                                            {record.category}
+                                                            {user.studentId}
                                                         </p>
                                                     </td>
                                                     <td>
                                                         <p className="text-sm font-medium text-gray-900 text-center">
-                                                            {record.courtNum}
+                                                            {user.courtName}
                                                         </p>
                                                     </td>
                                                     <td>
                                                         <p className="text-sm font-medium text-gray-900 text-center">
-                                                            {record.createdTime}
+                                                            {user.createdTime}
                                                         </p>
                                                     </td>
-                                                    <td scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center"><Button value={'取消預約'}></Button></td>
+                                                    <td scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => cancelHandler(user.courtName)}>取消預約</button></td>
                                                 </tr>
-                                            ))}</thead>
+                                            )}</thead>
 
                                     </table>
                                 </div>
