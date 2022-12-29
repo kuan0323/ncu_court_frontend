@@ -4,8 +4,7 @@ import NavBar from "../components/NavBar";
 import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
 import reserveService from "../services/reserveService";
-
-const records = [
+import { Link } from 'react-router-dom'; const records = [
     {
         id: "1",
         href: "#",
@@ -58,6 +57,7 @@ export default function reserveRecord() {
     useEffect(() => {
         fetchReserves();
     }, []);
+
     const fetchReserves = async () => {
 
         const userList = await reserveService.getReservation('109403020');//還要改成動態存取
@@ -65,12 +65,12 @@ export default function reserveRecord() {
 
     }
 
-    const cancelHandler = async (courtName:string) => {
+    const cancelHandler = async (courtName: string) => {
         const cancle = await reserveService.cancelReservation(courtName);
         window.location.reload();
     }
     const checkPickingList = async () => {
-        window.history.pushState(null,'','pickingList');
+        location.href = 'http://localhost:3000/pickingList'
     }
 
     return (
@@ -88,7 +88,14 @@ export default function reserveRecord() {
                         </h2>
                     </div>
                     <div className="col-span-1 float-right p-4 ">
-                        <div className="text-sm font-medium text-gray-900 float-right"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => checkPickingList}>查看待選清單</button></div>
+                        
+                        <div className="text-sm font-medium text-gray-900 float-right">
+                            <a href="http://localhost:3000/pickingList">
+                                <button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() =>checkPickingList()}>查看待選清單</button>
+                            </a>
+                                
+                        </div>
+
                     </div>
                 </div>
 
@@ -120,33 +127,33 @@ export default function reserveRecord() {
                                             </tr>
                                             {
                                                 users.map(
-                                                    (user:any) =>
-                                                <tr>
-                                                    <td>
-                                                        {/* <img
+                                                    (user: any) =>
+                                                        <tr>
+                                                            <td>
+                                                                {/* <img
                                                             src={record.photo}
                                                             alt={record.photoAlt}
                                                             className="h-full w-full object-cover object-center lg:h-full lg:w-full text-center"
                                                         /> */}
-                                                    </td>
-                                                    <td>
-                                                        <p className="text-sm font-medium text-gray-900 text-center">
-                                                            {user.studentId}
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p className="text-sm font-medium text-gray-900 text-center">
-                                                            {user.courtName}
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p className="text-sm font-medium text-gray-900 text-center">
-                                                            {user.createdTime}
-                                                        </p>
-                                                    </td>
-                                                    <td scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => cancelHandler(user.courtName)}>取消預約</button></td>
-                                                </tr>
-                                            )}</thead>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-medium text-gray-900 text-center">
+                                                                    {user.studentId}
+                                                                </p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-medium text-gray-900 text-center">
+                                                                    {user.courtName}
+                                                                </p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-medium text-gray-900 text-center">
+                                                                    {user.createdTime}
+                                                                </p>
+                                                            </td>
+                                                            <td scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => cancelHandler(user.courtName)}>取消預約</button></td>
+                                                        </tr>
+                                                )}</thead>
 
                                     </table>
                                 </div>
