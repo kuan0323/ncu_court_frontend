@@ -20,12 +20,14 @@ export default function login() {
         const a = await AuthService.login(student_id, password);
 
         Cookies.set('service_token', a);
+
         return a;
     }
 
     return (
 
-        <div className="h-screen w-screen row">
+        <div className="h-screen row">
+
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
@@ -34,31 +36,36 @@ export default function login() {
                 {`
                     body {
                         background-color: #69cbbf;
+                        width: 99%;
+                        min-width: 750px;
+                    }
+                    .container{
+                        min-width: 750px;
                     }
                 `}
             </style>
 
             <div className="container ">
 
-                <Image
+                {/* <Image
                     src="/../public/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}
                     className="z-3 position-absolute bottom-3.5 left-40"
-                />
-                <div className="row ">
+                /> */}
+                <div className="row h-full ">
                     <div className="col-4 text-left ">
                         <h1 className="text-white pt-32 pl-16">中央大學<br></br>場地預約網</h1>
                     </div>
-                    <div className="col-8 rounded-bl-xl rounded-tl-xl bg-white z-10 h-screen" >
+                    <div className="col-8 rounded-bl-xl rounded-tl-xl bg-white z-10" >
 
                         <h2 className="text-theme pt-32 pl-24 ">Log In</h2>
 
-                        <form className="pt-2 pl-24 pb-8 pr-44 ">
+                        <form className="pt-2 pl-24 pb-8 pr-44">
 
                             <div className="grid md:grid-cols-1 md:gap-6">{/* 學號 */}
-                                <div className="relative z-0 mb-6 w-full group">
+                                <div className="relative z-0 mb-6  group">
                                     <input type="text" name="student_id" id="student_id" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-t-0 border-r-0 border-l-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                     <label htmlFor="floating_student_id" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">學號</label>
                                 </div>
@@ -66,17 +73,17 @@ export default function login() {
 
                             <div className="grid md:grid-cols-1 md:gap-6">{/* 密碼 */}
 
-                                <div className="relative z-0 mb-6 w-full group">
+                                <div className="relative z-0 mb-6  group ">
                                     <input type="password" name="password" id="password" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-t-0 border-r-0 border-l-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                     <label htmlFor="floating_password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">密碼</label>
                                 </div>
                             </div>
 
                             <div className="grid md:grid-cols-1 ">{/* 登入 */}
-                                <a href="courtShow"><button type="submit" className="text-white bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => loginHandler()}>登入</button></a>
+                                <button type="submit" className="text-white bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => loginHandler()}><a className="text-decoration-none text-white">登入</a></button>
                             </div>
                             <div className="grid md:grid-cols-1 ">
-                                <button type="button" className="text-theme bg-white font-medium rounded-lg text-sm w-full sm:w-auto px-5 pt-2.5 text-center">還沒有帳號?</button>
+                                <button type="button" className="text-theme bg-white font-medium rounded-lg text-sm  sm:w-auto px-5 py-2.5 text-center"><a href="signup" className="text-decoration-none text-theme">還沒有帳號?</a></button>
                             </div>
                         </form>
 
