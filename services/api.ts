@@ -2,6 +2,6 @@ import axios, { AxiosInstance } from "axios"
 
 export default (): AxiosInstance => {
     return axios.create({
-        baseURL: 'https://memery.app'
+        baseURL: 'http://localhost:3005'
     });
 }
