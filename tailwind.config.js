@@ -13,7 +13,7 @@ module.exports = {
         'white': '#ffffff',
       },
     },
-    
+
     borderRadius: {
       'none': '0',
       'sm': '0.125rem',
