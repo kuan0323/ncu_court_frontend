@@ -3,56 +3,7 @@ import Cookies from 'js-cookie';
 import NavBar from "../components/NavBar";
 import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
-import reserveService from "../services/reserveService";
-import { Link } from 'react-router-dom';
-//git merge origin/
-const records = [
-    {
-        id: "1",
-        href: "#",
-        photo: "",
-        photoAlt: "圖片",
-        category: "籃球",
-        courtNum: "3",
-        createdTime: "12/21,9:14"
-    },
-    {
-        id: "2",
-        href: "#",
-        photo: "",
-        photoAlt: "圖片",
-        category: "羽球",
-        courtNum: "4",
-        createdTime: "12/21,10:54"
-    },
-    {
-        id: "3",
-        href: "#",
-        photo: "",
-        photoAlt: "圖片",
-        category: "排球",
-        courtNum: "1",
-        createdTime: "12/21,11:23"
-    },
-    {
-        id: "4",
-        href: "#",
-        photo: "",
-        photoAlt: "圖片",
-        category: "桌球",
-        courtNum: "2",
-        createdTime: "12/21,18:32"
-    },
-    {
-        id: "5",
-        href: "#",
-        photo: "",
-        photoAlt: "圖片",
-        category: "籃球",
-        courtNum: "1",
-        createdTime: "12/22,3:45"
-    },
-];
+import reserveService from "../services/reserveService";;
 export default function reserveRecord() {
     const [users, setUsers] = useState([]);
     // const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +14,7 @@ export default function reserveRecord() {
 
     const fetchReserves = async () => {
 
-        const userList = await reserveService.getReservation('109403020', "reserve");//還要改成動態存取
+        const userList = await reserveService.getReservation('109403020');//還要改成動態存取
         setUsers(userList);
 
     }
