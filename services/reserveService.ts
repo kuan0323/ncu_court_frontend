@@ -23,5 +23,14 @@ export default class reserveService {
         });
         return response.data;
     }
+    // static async getPicture(courtName :string) {
+    //     const response = await api().get('/api/courts', {
+    //         headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
+    //         params: {
+    //             courtName:courtName
+    //         }
+    //     });
+    //     return response.data.photo;
+    // }
 
 }

@@ -4,7 +4,9 @@ import NavBar from "../components/NavBar";
 import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
 import reserveService from "../services/reserveService";
-import { Link } from 'react-router-dom'; const records = [
+import { Link } from 'react-router-dom'; 
+//git merge origin/
+const records = [
     {
         id: "1",
         href: "#",
@@ -56,6 +58,7 @@ export default function reserveRecord() {
     // const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         fetchReserves();
+        
     }, []);
 
     const fetchReserves = async () => {
@@ -72,6 +75,9 @@ export default function reserveRecord() {
     const checkPickingList = async () => {
         location.href = 'http://localhost:3000/pickingList'
     }
+    // const findPicture = async(courtName:string) =>{
+    //     const picture = await reserveService.getPicture(courtName);
+    // }
 
     return (
         <div>
@@ -109,14 +115,14 @@ export default function reserveRecord() {
                                     <table className="min-w-full">
                                         <thead className="border-b">
                                             <tr className="text-xl">
+                                                {/* <th scope="col" className="text-lg font-medium text-gray-900 px-6 py-4 text-center">
+                                                    預約時間
+                                                </th> */}
                                                 <th scope="col" className="text-lg font-medium text-gray-900 px-6 py-4 text-center">
-                                                    圖片
+                                                    場地名稱
                                                 </th>
                                                 <th scope="col" className="text-lg font-medium text-gray-900 px-6 py-4 text-center">
-                                                    場地類別
-                                                </th>
-                                                <th scope="col" className="text-lg font-medium text-gray-900 px-6 py-4 text-center">
-                                                    場地編號
+                                                    預約日期
                                                 </th>
                                                 <th scope="col" className="text-lg font-medium text-gray-900 px-6 py-4 text-center">
                                                     預約時間
@@ -128,19 +134,18 @@ export default function reserveRecord() {
                                             {
                                                 users.map(
                                                     (user: any) =>
+                                                    
                                                         <tr>
-                                                            <td>
+                                                            {/* <td> */}
                                                                 {/* <img
-                                                            src={record.photo}
-                                                            alt={record.photoAlt}
+                                                            src={findPicture(user.courtName)}
+                                                            // alt={record.photoAlt}
                                                             className="h-full w-full object-cover object-center lg:h-full lg:w-full text-center"
                                                         /> */}
-                                                            </td>
-                                                            <td>
-                                                                <p className="text-sm font-medium text-gray-900 text-center">
-                                                                    {user.studentId}
+                                                                {/* <p className="text-sm font-medium text-gray-900 text-center">
+                                                                    {user.createdTime}
                                                                 </p>
-                                                            </td>
+                                                            </td> */}
                                                             <td>
                                                                 <p className="text-sm font-medium text-gray-900 text-center">
                                                                     {user.courtName}
@@ -148,7 +153,12 @@ export default function reserveRecord() {
                                                             </td>
                                                             <td>
                                                                 <p className="text-sm font-medium text-gray-900 text-center">
-                                                                    {user.createdTime}
+                                                                    {user.date}
+                                                                </p>
+                                                            </td>
+                                                            <td>
+                                                                <p className="text-sm font-medium text-gray-900 text-center">
+                                                                    {user.time}
                                                                 </p>
                                                             </td>
                                                             <td scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => cancelHandler(user.courtName)}>取消預約</button></td>
