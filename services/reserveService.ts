@@ -3,11 +3,12 @@ import Cookies from 'js-cookie';
 
 export default class reserveService {
 
-    static async getReservation(studentId: string) {
+    static async getReservation(studentId: string ,status:string) {
         const response = await api().get('/api/reservations', {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
             params: {
-                studentId: studentId
+                studentId: studentId,
+                status :status
             }
 
         });
