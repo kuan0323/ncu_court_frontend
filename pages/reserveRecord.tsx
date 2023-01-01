@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
 import reserveService from "../services/reserveService";
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 //git merge origin/
 const records = [
     {
@@ -58,12 +58,12 @@ export default function reserveRecord() {
     // const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         fetchReserves();
-        
+
     }, []);
 
     const fetchReserves = async () => {
 
-        const userList = await reserveService.getReservation('109403020');//還要改成動態存取
+        const userList = await reserveService.getReservation('109403020', "reserve");//還要改成動態存取
         setUsers(userList);
 
     }
@@ -94,12 +94,12 @@ export default function reserveRecord() {
                         </h2>
                     </div>
                     <div className="col-span-1 float-right p-4 ">
-                        
+
                         <div className="text-sm font-medium text-gray-900 float-right">
                             <a href="http://localhost:3000/pickingList">
-                                <button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() =>checkPickingList()}>查看待選清單</button>
+                                <button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => checkPickingList()}>查看待選清單</button>
                             </a>
-                                
+
                         </div>
 
                     </div>
@@ -134,15 +134,15 @@ export default function reserveRecord() {
                                             {
                                                 users.map(
                                                     (user: any) =>
-                                                    
+
                                                         <tr>
                                                             {/* <td> */}
-                                                                {/* <img
+                                                            {/* <img
                                                             src={findPicture(user.courtName)}
                                                             // alt={record.photoAlt}
                                                             className="h-full w-full object-cover object-center lg:h-full lg:w-full text-center"
                                                         /> */}
-                                                                {/* <p className="text-sm font-medium text-gray-900 text-center">
+                                                            {/* <p className="text-sm font-medium text-gray-900 text-center">
                                                                     {user.createdTime}
                                                                 </p>
                                                             </td> */}
