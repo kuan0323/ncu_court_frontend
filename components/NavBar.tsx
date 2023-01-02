@@ -103,7 +103,7 @@ export default function NavBar({
                     item.current
                       ? "text-theme2 font-extrabold"
                       : "text-white hover:text-theme2 font-extrabold",
-                    "block px-3 py-2 rounded-md text-base font-medium"
+                    "block px-3 py-2 rounded-md text-base font-medium "
                   )}
                   aria-current={item.current ? "page" : undefined}
                 >
