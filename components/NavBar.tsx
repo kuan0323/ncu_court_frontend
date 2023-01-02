@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Fragment } from "react";
-
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -24,7 +23,7 @@ export default function NavBar({
     { name: "我的帳戶", href: "/editAccount", current: myAccount },
   ];
   return (
-    <Disclosure as="nav" className="bg-background">
+    <Disclosure as="nav" className="bg-theme">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -77,7 +76,6 @@ export default function NavBar({
                         {item.name}
                       </a>
                     ))}
-                    
                   </div>
                 </div>
               </div>

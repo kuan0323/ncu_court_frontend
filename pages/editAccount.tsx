@@ -12,6 +12,8 @@ export default function editAccount() {
     const [showPassword2, setShowPassword2] = useState(false);
     const [showPassword3, setShowPassword3] = useState(false);
     const [users, setUsers] = useState([]);
+    // const [email, setEmail] = useState('');
+    // const [name, setName] = useState('');
     
     useEffect(() => {
         fetchUsers();

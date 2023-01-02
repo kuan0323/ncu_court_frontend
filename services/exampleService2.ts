@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 export default class exampleService {
 
-    static async getExample (sortby: string, role: string) {
+    static async getExample(sortby: string, role: string) {
         const response = await api().get('/api/users', {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
             params: {
@@ -14,4 +14,3 @@ export default class exampleService {
         return response.data;
     }
 }
-
