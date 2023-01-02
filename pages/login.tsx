@@ -6,9 +6,8 @@ import Cookies from 'js-cookie';
 export default function Login () {
 
     const loginHandler = async () => {
-
-        const a = await AuthService.login('111', 'a');
-        // console.log(typeof a);
+        const a = await AuthService.login('yhyh', 'yyy');
+        console.log("aaa");
         Cookies.set('service_token', a);
         return a;
     }
