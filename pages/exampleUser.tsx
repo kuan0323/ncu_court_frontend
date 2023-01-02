@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import AppBar from "../components/AppBar";
 import exampleService from "../services/exampleService";
 
-export default function exampleUser () {
+export default function ExampleUser () {
     const [users, setUser] = useState([]);
     // const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function exampleUser () {
             {
                 users.map(
                     (a: any) =>
-                    <div>{a.name}</div>
+                    <div key={a.name}>{a.name}</div>
                 )
             }
             <div>user page</div>
