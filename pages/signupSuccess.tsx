@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from 'next/image'
 
-export default function signup_success() {
+export default function Signup_success() {
 
     return (
 
