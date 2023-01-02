@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import UserService from "../services/userService";
-
+import Link from 'next/link';
 import AppBar from "../components/AppBar";
 
 import Cookies from 'js-cookie';
@@ -123,7 +123,9 @@ export default function SignUp() {
                                 <button type="submit" onClick={() => sign_upHandler()} className=" bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" ><a className="text-decoration-none text-white">確認</a></button>
                             </div>
                             <div className="grid md:grid-cols-1 ">
-                                <button type="button" className="text-theme bg-white font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center "><a href="/" className="text-decoration-none text-theme">已經有帳號?</a></button>
+                                <button type="button" className="text-theme bg-white font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center ">
+                                    <Link href="http://localhost:3000/" className="text-decoration-none text-theme">已經有帳號?</Link>
+                                </button>
                             </div>
                         </form>
                     </div>
