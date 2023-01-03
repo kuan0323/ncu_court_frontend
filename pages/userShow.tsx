@@ -1,7 +1,7 @@
 import AdminNavBar from "../components/AdminNavBar";
 import { useEffect, useState } from "react";
 
-export default function userShow() {
+export default function UserShow() {
 
 	return(
 		<div>

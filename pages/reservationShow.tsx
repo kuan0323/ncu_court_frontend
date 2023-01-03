@@ -1,6 +1,6 @@
 import AdminNavBar from "../components/AdminNavBar";
 
-export default function reservationShow() {
+export default function ReservationShow() {
     return( 
 
         <div>

@@ -1,6 +1,6 @@
 import AdminNavBar from "../components/AdminNavBar";
 
-export default function courtCreate(){
+export default function CourtCreate(){
     return(
         <div>
             <AdminNavBar manageUser={false} manageAdmin={false} manageReservation={false} manageCourt={false}></AdminNavBar>
