@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from "axios"
 // const cors = require('cors');
 export default (): AxiosInstance => {
     return axios.create({
-        baseURL: 'http://localhost:3005',
+        baseURL: 'https://ncu-court.memery.app',
     });
 }
 // const corsOptions = {
