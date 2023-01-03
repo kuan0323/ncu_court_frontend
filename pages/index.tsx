@@ -10,10 +10,6 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     const loginHandler = async () => {
-        // const student_id_Element = document.getElementById("student_id");
-        // const student_id = student_id_Element.value; // 紅字可以不用理它，可以正常運作
-        // const password_Element = document.getElementById("password");
-        // const password = password_Element.value; // 紅字可以不用理它，可以正常運作
         const serviceToken = await AuthService.login(studentId, password);
         Cookies.set('service_token', serviceToken);
     }
@@ -42,7 +38,7 @@ export default function Login() {
             <div className="container ">
 
                 {/* <Image
-                    src="/../public/static/images/kid.png"
+                    src="../public/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}

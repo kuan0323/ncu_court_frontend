@@ -85,7 +85,7 @@ export default function ReserveRecord() {
                                             {
                                                 users.map(
                                                     (user: any) =>
-
+                                                    <div key={user.studentId}>
                                                         <tr>
                                                             {/* <td> */}
                                                             {/* <img
@@ -114,6 +114,7 @@ export default function ReserveRecord() {
                                                             </td>
                                                             <td scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => cancelHandler(user.courtName)}>取消預約</button></td>
                                                         </tr>
+                                                    </div>
                                                 )}</thead>
 
                                     </table>
