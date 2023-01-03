@@ -1,7 +1,7 @@
 import api from "./api";
 import Cookies from 'js-cookie';
 
-export default class exampleService {
+export default class courtService {
 
     static async searchByDate(sortby: string, role: string) {
         const response = await api().get('/api/users', {

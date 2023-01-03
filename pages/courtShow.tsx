@@ -1,8 +1,8 @@
 import AdminNavBar from "../components/AdminNavBar";
-import exampleService from "../services/adminUserService2";
+import courtService from "../services/courtService";
 import { useEffect, useState } from "react";
 
-export default function courtShow() {
+export default function CourtShow() {
 
     const [court, setCourt] = useState([]);
     useEffect(() => {
@@ -10,10 +10,9 @@ export default function courtShow() {
     }, []);
 
     const fetchCourt = async () => {
-        const courtList = await exampleService.getCourt();
+        const courtList = await courtService.getCourt();
         setCourt(courtList);
     }
-
 
     return( 
         <div>
@@ -51,7 +50,7 @@ export default function courtShow() {
                                     {
                                         court.map(
                                             (court: any) =>
-                                                <tbody>
+                                                <tbody key={court.id}>
                                                     <tr className="border-b">
                                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{court.name}</td>
                                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{court.type}</td>

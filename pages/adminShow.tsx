@@ -1,10 +1,10 @@
 import AdminNavBar from "../components/AdminNavBar";
 import { useEffect, useState } from "react";
 import adminUserService from "../services/adminUserService";
-import exampleService from "../services/adminUserService2";
+import exampleService from "../services/courtService";
 import Cookies from 'js-cookie';
 
-export default function adminShow(){
+export default function AdminShow(){
 
     const [users, setUsers] = useState([]);
     useEffect(() => {       
@@ -67,7 +67,7 @@ export default function adminShow(){
                                 {
                                     users.map(
                                         (user: any) =>
-                                        <tbody>
+                                        <tbody key={user.id}>
                                         <tr className="border-b">
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.name}</td>
                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.studentId}</td>
