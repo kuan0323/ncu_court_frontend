@@ -14,7 +14,8 @@ export default function CourtShow() {
         setCourt(courtList);
     }
 
-    return( 
+
+    return (
         <div>
             <AdminNavBar manageUser={false} manageAdmin={false} manageReservation={false} manageCourt={false}></AdminNavBar>
             <div className="flex">
