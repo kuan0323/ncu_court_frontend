@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
 import reserveService from "../services/reserveService";;
-export default function reserveRecord() {
+export default function ReserveRecord() {
     const [users, setUsers] = useState([]);
     // const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
