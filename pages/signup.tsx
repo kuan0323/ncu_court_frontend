@@ -124,7 +124,7 @@ export default function SignUp() {
                             </div>
                             <div className="grid md:grid-cols-1 ">
                                 <button type="button" className="text-theme bg-white font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center ">
-                                    <Link href="http://localhost:3000/" className="text-decoration-none text-theme">已經有帳號?</Link>
+                                    <Link href="/" className="text-decoration-none text-theme">已經有帳號?</Link>
                                 </button>
                             </div>
                         </form>
