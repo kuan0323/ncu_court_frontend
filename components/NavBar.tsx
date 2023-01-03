@@ -43,7 +43,7 @@ export default function NavBar({
                 <div className="flex flex-shrink-0 items-center">
                   <Image
                     className="block h-8 w-auto lg:hidden"
-                    src="../public/static/images/kid.png"
+                    src="/../public/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}
