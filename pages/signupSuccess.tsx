@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from 'next/image'
 import Link from 'next/link';
 
-export default function Signup_success() {
+export default function SignupSuccess() {
 
     return (
 
