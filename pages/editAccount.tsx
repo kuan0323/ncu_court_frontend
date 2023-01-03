@@ -1,10 +1,6 @@
-import Head from 'next/head'
 import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
-import Cookies from 'js-cookie';
 import UserService from "../services/userService";
-
-
 
 export default function EditAccount() {
     const [showModal, setShowModal] = useState(true);
@@ -68,8 +64,6 @@ export default function EditAccount() {
 
             <div className=" col-span-2 row-span-1  place-items-center">
                 <div className="flex md:flex-col justify-center items-center mt-40 ">
-
-                    {/* modal */}
                     {showModal ? (
                         <div className="fixed  inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
                             <div className="w-[600px]">
@@ -142,13 +136,13 @@ export default function EditAccount() {
 
                                             <div className="flex gap-5">
 
-                                                <link href="/" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <button onClick={() => { setShowModal(false); }}  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                     取消
-                                                </link>
+                                                </button>
                                                 <button
                                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                                    onClick={() => editHandler()}
-                                                >儲存
+                                                    onClick={() => editHandler()}>
+                                                    儲存
                                                 </button>
                                             </div>
 
