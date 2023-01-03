@@ -9,26 +9,29 @@ function classNames(...classes: string[]) {
 }
 
 export default function NavBar({
-  mainPage,
-  myReserve,
-  myAccount,
+    manageUser,
+    manageAdmin,
+    manageReservation,
+    manageCourt
 }: {
-  mainPage: boolean;
-  myReserve: boolean;
-  myAccount: boolean;
+    manageUser: boolean;
+    manageAdmin: boolean;
+    manageReservation: boolean;
+    manageCourt: boolean;
 }) {
-  const navigation = [
-    { name: "首頁", href: "/", current: mainPage },
-    { name: "我的預約", href: "#", current: myReserve },
-    { name: "我的帳戶", href: "/editAccount", current: myAccount },
-  ];
-  return (
+const navigation = [
+    { name: "會員管理", href: "/userShow", current: manageUser },
+    { name: "管理員管理", href: "/adminShow", current:  manageAdmin},
+    { name: "預約紀錄管理", href: "/reservationShow", current: manageReservation },
+    { name: "場地管理", href: "/courtShow", current: manageCourt },
+];
+return (
     <Disclosure as="nav" className="bg-theme">
-      {({ open }) => (
+        {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                <div className="relative flex h-16 items-center justify-between">
+                    <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
@@ -43,7 +46,7 @@ export default function NavBar({
                 <div className="flex flex-shrink-0 items-center">
                   <Image
                     className="block h-8 w-auto lg:hidden"
-                    src="../public/static/images/kid.png"
+                    src="/../public/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}
@@ -117,4 +120,3 @@ export default function NavBar({
     </Disclosure>
   );
 }
-
