@@ -113,7 +113,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function test() {
+export default function Courts() {
   const [open, setOpen] = useState(false);
   const [resOpen, setResOpen] = useState(false);
   const [selectedCourt, setCourt] = useState(courts[0]);
@@ -335,7 +335,8 @@ export default function test() {
                                         ? "bg-gray-50"
                                         : "bg-white",
                                       "px-4 py-2 flex w-full"
-                                    )}
+                                    ) }
+                                    key={message.id}
                                   >
                                     <div className="w-1/4">
                                       <p className="text-theme font-bold text-xl">
