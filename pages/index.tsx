@@ -56,7 +56,7 @@ export default function Login() {
 
                         <h2 className="text-theme pt-32 pl-24 ">Log In</h2>
 
-                        <form className="pt-2 pl-24 pb-8 pr-44">
+                        <form className="pt-2 pl-24 pb-8 pr-44" action="home">
 
                             <div className="grid md:grid-cols-1 md:gap-6">{/* 學號 */}
                                 <div className="relative z-0 mb-6  group">

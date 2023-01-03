@@ -1,7 +1,7 @@
 
 
-export default function courtShow() {
-    return( 
+export default function CourtShow() {
+    return (
         <div>
             <div className="flex">
                 <div className="flex-col p-4 w-full mx-8">
