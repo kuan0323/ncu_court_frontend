@@ -18,9 +18,9 @@ export default function NavBar({
   myAccount: boolean;
 }) {
   const navigation = [
-    { name: "首頁", href: "/home", current: mainPage },
-    { name: "我的預約", href: "/reserveRecord", current: myReserve },
-    { name: "我的帳戶", href: "/editAccount", current: myAccount },
+    { name: "首頁", href: "#", current: mainPage },
+    { name: "我的預約", href: "#", current: myReserve },
+    { name: "我的帳戶", href: "#", current: myAccount },
   ];
   return (
     <Disclosure as="nav" className="bg-theme">
@@ -117,4 +117,3 @@ export default function NavBar({
     </Disclosure>
   );
 }
-
