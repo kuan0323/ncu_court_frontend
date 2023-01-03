@@ -18,9 +18,9 @@ export default function NavBar({
   myAccount: boolean;
 }) {
   const navigation = [
-    { name: "首頁", href: "#", current: mainPage },
+    { name: "首頁", href: "/", current: mainPage },
     { name: "我的預約", href: "#", current: myReserve },
-    { name: "我的帳戶", href: "#", current: myAccount },
+    { name: "我的帳戶", href: "/editAccount", current: myAccount },
   ];
   return (
     <Disclosure as="nav" className="bg-theme">
@@ -103,7 +103,7 @@ export default function NavBar({
                     item.current
                       ? "text-theme2 font-extrabold"
                       : "text-white hover:text-theme2 font-extrabold",
-                    "block px-3 py-2 rounded-md text-base font-medium "
+                    "block px-3 py-2 rounded-md text-base font-medium"
                   )}
                   aria-current={item.current ? "page" : undefined}
                 >
