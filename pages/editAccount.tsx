@@ -3,11 +3,6 @@ import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
 import Cookies from 'js-cookie';
 import UserService from "../services/userService";
-import Cookies from 'js-cookie';
-
-
-
-
 
 export default function EditAccount() {
 
