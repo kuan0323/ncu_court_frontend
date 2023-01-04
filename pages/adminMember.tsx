@@ -2,11 +2,13 @@
 import exampleService from "../services/exampleService2";
 import AppBar from "../components/AppBar";
 import NavBar from "../components/NavBar";
+import userService from "../services/userService";
 
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 export default function AdminMember() {
 
+    const [id, setId] = useState('');
     const [users, setUsers] = useState([]);
     useEffect(() => {
         fetchUsers();
@@ -16,6 +18,14 @@ export default function AdminMember() {
         const userList = await exampleService.getExample('createdTime', 'regular');
         setUsers(userList);
     }
+
+
+    const deleteHandler = async (id: string) => {
+        await userService.delete(id);
+        window.location.replace("/adminMember");
+
+    }
+
 
     return (
         <div className="md:flex-row">
@@ -34,11 +44,6 @@ export default function AdminMember() {
                         <a className="justify-center text-decoration-none text-white flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-400 transition duration-300 ease-in-out" href="#!" data-mdb-ripple="true" data-mdb-ripple-color="dark">預約紀錄管理</a>
 
                         <a className="justify-center text-decoration-none text-white flex items-center text-base py-4 px-6 h-12 overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-gray-900 hover:bg-gray-400 transition duration-300 ease-in-out" href="" data-mdb-ripple="true" data-mdb-ripple-color="dark">場地管理</a>
-
-                        <br></br>
-                        <div className="flex space-x-2 justify-center">
-                            <button type="button" className="inline-block px-6 py-2.5 bg-[#40948A] text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-gray-100 hover:shadow-lg focus:bg-gray-100 focus:shadow-lg focus:outline-none rounded-full focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">登出</button>
-                        </div>
                     </div>
                 </nav>
             </div>
@@ -51,7 +56,7 @@ export default function AdminMember() {
 
                             <div className="overflow-hidden">
 
-                                <table className="min-w-full">
+                                <table className="min-w-full overflow-auto">
                                     <thead className="border-b">
                                         <tr>
                                             <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
@@ -82,7 +87,7 @@ export default function AdminMember() {
                                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> {a.studentId}<div></div></td>{/* 學號 */}
                                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> {a.email}</td>{/* Email */}
                                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> {a.phone}</td>{/* 電話 */}
-                                                        <td><button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除會員</button></td>
+                                                        <td><button type="button" onClick={() => deleteHandler(a.id)} className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除會員</button></td>
                                                     </tr>
 
                                                 </tbody>)}

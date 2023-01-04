@@ -1,13 +1,13 @@
 import api from "./api";
 import Cookies from 'js-cookie';
 
-export default class exampleService {
+export default class ExampleService {
 
     static async getAdminUser(studentId: string) {
         const response = await api().get('/api/users', {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
             params: {
-                studentId: studentId
+                studentId: studentId,
             }
         });
         return response.data;
@@ -24,6 +24,7 @@ export default class exampleService {
         });
         return response.data;
     }
+
 
     static async delete(id: string) {
 

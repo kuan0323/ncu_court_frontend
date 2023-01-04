@@ -38,8 +38,6 @@ export default class UserService {
         return response.data;
     }
 
-
-    // 
     static async login(name: string, studentId: string, email: string, phone: string, password: string) {
         const response = await api().post('/api/auth/login', {
             name: name,
@@ -51,5 +49,11 @@ export default class UserService {
         return response.data.serviceToken;
     }
 
+    static async delete(id: string) {
+
+        await api().delete(`/api/users/${id}`, {
+            headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
+        },);
+    }
 
 }
