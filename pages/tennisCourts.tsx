@@ -4,52 +4,14 @@ import { Dialog, Listbox, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import courtService from "../services/courtService";
 import userService from "../services/userService";
+import messageService from "../services/messageService";
 import Cookies from "js-cookie";
-
-const messages = [
-  {
-    id: 1,
-    userId: "109403000",
-    userName: "小明",
-    content: "77777777777",
-    createdTime: "2022/12/1 17:36",
-  },
-  {
-    id: 1,
-    userId: "109403000",
-    userName: "小張",
-    content: "6666666666666666",
-    createdTime: "2022/12/1 17:36",
-  },
-  {
-    id: 1,
-    userId: "109403000",
-    userName: "小王",
-    content: "8888888 888888888888 888888888888 8 8888",
-    createdTime: "2022/12/1 17:36",
-  },
-  {
-    id: 1,
-    userId: "109403000",
-    userName: "小明",
-    content: "e04e04e04 c8 哈哈哈哈 6666666666666666666",
-    createdTime: "2022/12/1 17:36",
-  },
-  {
-    id: 1,
-    userId: "109403000",
-    userName: "酸民",
-    content: "Lorem ipsum dolor sit amet, consecteturasldfjiwjeorijf",
-    createdTime: "2022/12/1 17:36",
-  },
-];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-<<<<<<<< HEAD:pages/tennisCourts.tsx
-export default function test() {
+export default function tennisCourts() {
   const exampleCourt = {
     name: "exampleName",
     price: "examplePrice",
@@ -60,10 +22,14 @@ export default function test() {
   const [courts, setCourts] = useState([]);
   const [selectedCourt, setCourt] = useState<any>(exampleCourt);
   const [userSelf, setUserSelf] = useState<any>();
+  const [messages, setMessages] = useState<any>([]);
+  let inputMessage = "";
+
   useEffect(() => {
     fetchCourts();
     fetchSelfProfile();
   }, []);
+
   const fetchCourts = async () => {
     const courtList = await courtService.getCourtByType("tennis");
     setCourts(courtList);
@@ -72,10 +38,14 @@ export default function test() {
     const selfProfile = await userService.getSelfProfile();
     setUserSelf(selfProfile);
   };
+  const fetchMessagesByCourt = async (courtId: string) => {
+    const messageList = await messageService.getMessageByCourt(courtId);
+    setMessages(messageList);
+  };
+  const leaveMessage = async (courtId: string, content: string) => {
+    const theMessage = await messageService.createMessage(courtId, content);
+  };
 
-========
-export default function Courts() {
->>>>>>>> main:pages/courts.tsx
   const [open, setOpen] = useState(false);
   const [resOpen, setResOpen] = useState(false);
   return (
@@ -105,6 +75,7 @@ export default function Courts() {
                       <button
                         onClick={() => {
                           setCourt(court);
+                          fetchMessagesByCourt(court.id);
                           setOpen(true);
                         }}
                       >
@@ -286,19 +257,19 @@ export default function Courts() {
                           <div>
                             <div className="mt-10 w-full h-80 overflow-auto bg-gray-50 border border-gray-500 border-b-0">
                               <ul className="list-none w-full">
-                                {messages.map((message, index) => (
+                                {messages.map((message: any, index: any) => (
                                   <li
                                     className={classNames(
                                       index % 2 == 0
                                         ? "bg-gray-50"
                                         : "bg-white",
                                       "px-4 py-2 flex w-full"
-                                    ) }
+                                    )}
                                     key={message.id}
                                   >
                                     <div className="w-1/4">
                                       <p className="text-theme font-bold text-xl">
-                                        {message.userName}
+                                        {message.user.name}
                                       </p>
                                     </div>
                                     <div className="w-3/4">
@@ -314,18 +285,41 @@ export default function Courts() {
                               </ul>
                             </div>
                             <div className="flex">
-                              <input
-                                type="text"
-                                name="message"
-                                className="h-10 block w-4/5 border-gray-500 border pl-7 pr-12 focus:outline-none"
-                                placeholder="輸入留言"
-                              />
-                              <button
-                                className="w-1/5 text-white bg-theme border border-gray-500 border-l-0 hover:bg-theme2"
-                                type="submit"
+                              <form
+                                onSubmit={(event) => {
+                                  event.preventDefault();
+                                  const form = event.target as HTMLFormElement;
+                                  if (inputMessage !== "") {
+                                    leaveMessage(
+                                      selectedCourt.id,
+                                      inputMessage
+                                    );
+                                    form.reset();
+                                    setTimeout(() => {
+                                      fetchMessagesByCourt(selectedCourt.id);
+                                    }, 1000);
+                                  }
+                                }}
+                                className="flex w-full"
                               >
-                                留言
-                              </button>
+                                <input
+                                  type="text"
+                                  id="inputMessage"
+                                  name="message"
+                                  className="h-10 block w-4/5 border-gray-500 border pl-7 pr-12 focus:outline-none"
+                                  placeholder="輸入留言"
+                                  onChange={(event) => {
+                                    inputMessage = event.target.value;
+                                  }}
+                                  required
+                                />
+                                <button
+                                  className="w-1/5 text-white bg-theme border border-gray-500 border-l-0 hover:bg-theme2"
+                                  type="submit"
+                                >
+                                  送出
+                                </button>
+                              </form>
                             </div>
                           </div>
                         )}
