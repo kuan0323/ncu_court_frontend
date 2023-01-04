@@ -1,10 +1,7 @@
-import Head from 'next/head'
 import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
 import UserService from "../services/userService";
 import Cookies from 'js-cookie';
-
-
 
 export default function EditAccount() {
 
@@ -13,6 +10,9 @@ export default function EditAccount() {
     const [showPassword2, setShowPassword2] = useState(false);
     const [showPassword3, setShowPassword3] = useState(false);
     const [users, setUsers] = useState();
+    let name1:string="";
+    //let empName:string = "Rohit Sharma"; 
+    //var studentName: String = 'Peter'; 
     
 
     
@@ -30,10 +30,13 @@ export default function EditAccount() {
     const fetchUsers = async () => {
         const userList = await UserService.getSelfUser();
         setUsers(userList);  
-        console.log(userList);
-        console.log(userList.name); 
-
+        // console.log(userList);
+        // console.log(userList.name); 
+         //console.log(typeof userList.name);
+         name1 = userList.name;
     }
+    console.log(name1);
+
     
     // console.log(users);
     // console.log(typeof users);
@@ -60,8 +63,6 @@ export default function EditAccount() {
 
             <div className=" col-span-2 row-span-1  place-items-center">
                 <div className="flex md:flex-col justify-center items-center mt-40 ">
-
-                    {/* modal */}
                     {showModal ? (
                         <div className="fixed  inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
                             <div className="w-[600px]">
@@ -70,12 +71,13 @@ export default function EditAccount() {
 
                                         <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">修改會員資料</h3>
 
-                                        <form className="space-y-6" action="#">
-                                            {/* {
+                                        <form className="space-y-6" action="#" >
+                                        {/* {
+
                                                 users.map(
-                                                    (a: any) =>
-                                                        <div key={a.name}> */}
-                                                            <div className="flex gap-5">
+                                                    (user: any) => */}
+                                                    <div>
+                                                        <div className="flex gap-5">
 
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">學號</label>
@@ -93,7 +95,7 @@ export default function EditAccount() {
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">暱稱</label>
                                                                     <input value={name} onChange={(e)=> setName(e.target.value)} type="name" name="name" id="name" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={"user.name"} />
+                                                                    placeholder={name1} />
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">聯絡電話</label>
@@ -101,7 +103,7 @@ export default function EditAccount() {
                                                                     placeholder={"user.phone"} />
                                                                 </div>
                                                             </div>
-                                                    {/* </div> */}
+                                                    </div>
                                                             
                                                         
                                                         
@@ -145,13 +147,13 @@ export default function EditAccount() {
                                             <br></br>
                                             <div className="flex gap-5">
 
-                                                <link href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <a href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                     取消
-                                                </link>
+                                                </a>
                                                 <button
                                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                                    onClick={() => editHandler()}
-                                                >儲存
+                                                    onClick={() => editHandler()}>
+                                                    儲存
                                                 </button>
                                             </div>
 
