@@ -25,13 +25,10 @@ export default class exampleService {
         return response.data;
     }
 
-    static async deleteUsers( id: string ) {
-        const response = await api().delete('/api/users/:id', {
+    static async delete(id: string) {
+
+        await api().delete(`/api/users/${id}`, {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
-            params: {
-                id: id
-            }
-        });
-        return response.data;
+        },);
     }
 }

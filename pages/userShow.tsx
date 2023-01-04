@@ -30,9 +30,10 @@ export default function UserShow() {
         setUsers(userList);
     }
 
-	const cancelHandler = async (id: string) => {
-        const cancle = await adminUserService.deleteUsers(id);
+	const deleteHandler = async (id: string) => {
+        await adminUserService.delete(id);
         window.location.reload();
+
     }
 
 	return(
@@ -90,7 +91,7 @@ export default function UserShow() {
 										<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.email}</td>
 										<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{user.phone}</td>
 										<td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-											<button onClick={() => cancelHandler(user._id)} type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除會員</button>
+											<button onClick={() => deleteHandler(user.id)} type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除會員</button>
 										</td>
 									</tr>
 								</tbody>)}
