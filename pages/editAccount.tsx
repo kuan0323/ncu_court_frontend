@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
+import Cookies from 'js-cookie';
 import UserService from "../services/userService";
 import Cookies from 'js-cookie';
+
+
 
 
 
@@ -71,10 +74,12 @@ export default function EditAccount() {
                                         <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">修改會員資料</h3>
 
                                         <form className="space-y-6" action="#">
+
                                             {/* {
                                                 users.map(
                                                     (a: any) =>
                                                         <div key={a.name}> */}
+
                                                             <div className="flex gap-5">
 
                                                                 <div className="w-full">
@@ -145,7 +150,9 @@ export default function EditAccount() {
                                             <br></br>
                                             <div className="flex gap-5">
 
+
                                                 <link href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
                                                     取消
                                                 </link>
                                                 <button
