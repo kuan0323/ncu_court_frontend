@@ -9,29 +9,29 @@ function classNames(...classes: string[]) {
 }
 
 export default function NavBar({
-    manageUser,
-    manageAdmin,
-    manageReservation,
-    manageCourt
+  manageUser,
+  manageAdmin,
+  manageReservation,
+  manageCourt
 }: {
-    manageUser: boolean;
-    manageAdmin: boolean;
-    manageReservation: boolean;
-    manageCourt: boolean;
+  manageUser: boolean;
+  manageAdmin: boolean;
+  manageReservation: boolean;
+  manageCourt: boolean;
 }) {
-const navigation = [
+  const navigation = [
     { name: "會員管理", href: "/userShow", current: manageUser },
-    { name: "管理員管理", href: "/adminShow", current:  manageAdmin},
+    { name: "管理員管理", href: "/adminShow", current: manageAdmin },
     { name: "預約紀錄管理", href: "/reservationShow", current: manageReservation },
     { name: "場地管理", href: "/courtShow", current: manageCourt },
-];
-return (
+  ];
+  return (
     <Disclosure as="nav" className="bg-theme">
-        {({ open }) => (
+      {({ open }) => (
         <>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                <div className="relative flex h-16 items-center justify-between">
-                    <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="relative flex h-16 items-center justify-between">
+              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
@@ -72,7 +72,7 @@ return (
                           item.current
                             ? "text-theme2 font-extrabold hover:text-teal-700"
                             : "text-white hover:text-theme2 font-extrabold",
-                          "px-3 py-2 rounded-md text-sm font-medium"
+                          "px-3 py-2 rounded-md text-sm font-medium text-decoration-none"
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -87,7 +87,7 @@ return (
                   type="button"
                   className="rounded-xl bg-theme2 p-1 text-white hover:ring-2 hover:ring-teal-700"
                 >
-                  <a href="#">
+                  <a href="#" className="text-decoration-none">
                     <p className="mx-4 my-0.5 text-white">登出</p>
                   </a>
                 </button>
