@@ -1,75 +1,10 @@
 import NavBar from "../components/NavBar";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Listbox, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-
-const courts = [
-  {
-    id: 1,
-    name: "籃球場A",
-    place: "依仁堂",
-    openTime: "7:00~21:00",
-    href: "./singleCourt",
-    photo: "",
-    photoAlt: "籃球場A圖片",
-    price: "$999",
-    beReserved: true,
-  },
-  {
-    id: 2,
-    name: "籃球場B",
-    place: "戶外",
-    openTime: "7:00~21:00",
-    href: "#",
-    photo: "",
-    photoAlt: "籃球場B圖片",
-    price: "$999",
-    beReserved: true,
-  },
-  {
-    id: 3,
-    name: "籃球場C",
-    place: "依仁堂",
-    openTime: "7:00~21:00",
-    href: "#",
-    photo: "",
-    photoAlt: "籃球場C圖片",
-    price: "$999",
-    beReserved: false,
-  },
-  {
-    id: 4,
-    name: "籃球場D",
-    place: "依仁堂",
-    openTime: "7:00~21:00",
-    href: "#",
-    photo: "",
-    photoAlt: "籃球場D圖片",
-    price: "$999",
-    beReserved: false,
-  },
-  {
-    id: 5,
-    name: "籃球場E",
-    place: "戶外",
-    openTime: "7:00~21:00",
-    href: "#",
-    photo: "",
-    photoAlt: "籃球場E圖片",
-    price: "$999",
-    beReserved: true,
-  },
-  // More courts...
-];
-
-const users = {
-  name: "小王",
-  studentID: "109403999",
-  email: "tsettest@gmail.com",
-  phone: "0900123456",
-  role: "regular",
-};
+import courtService from "../services/courtService";
+import userService from "../services/userService";
+import Cookies from "js-cookie";
 
 const messages = [
   {
@@ -114,10 +49,31 @@ function classNames(...classes: string[]) {
 }
 
 export default function test() {
+  const exampleCourt = {
+    name: "exampleName",
+    price: "examplePrice",
+    type: "exampleType",
+    photo: "examplePhoto",
+    beReserved: false,
+  };
+  const [courts, setCourts] = useState([]);
+  const [selectedCourt, setCourt] = useState<any>(exampleCourt);
+  const [userSelf, setUserSelf] = useState<any>();
+  useEffect(() => {
+    fetchCourts();
+    fetchSelfProfile();
+  }, []);
+  const fetchCourts = async () => {
+    const courtList = await courtService.getCourtByType("tennis");
+    setCourts(courtList);
+  };
+  const fetchSelfProfile = async () => {
+    const selfProfile = await userService.getSelfProfile();
+    setUserSelf(selfProfile);
+  };
+
   const [open, setOpen] = useState(false);
   const [resOpen, setResOpen] = useState(false);
-  const [selectedCourt, setCourt] = useState(courts[0]);
-
   return (
     <div>
       <div className="bg-white">
@@ -126,11 +82,11 @@ export default function test() {
         </div>
         <div className=" mx-auto max-w-2xl py-8 px-4 sm:py-16 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="mb-5 text-2xl font-bold tracking-tight text-theme">
-            籃球場列表
+            網球場列表
           </h2>
           <div className="bg-gray-400 h-0.5"></div>
           <div className="mt-16 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            {courts.map((court) => (
+            {courts.map((court: any) => (
               <div key={court.id} className="group relative">
                 <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
                   <img
@@ -220,11 +176,9 @@ export default function test() {
                           <p className="text-theme2 text-xl">
                             場地名稱 : {selectedCourt.name}
                           </p>
+                          <p className="text-theme2 text-xl">地點 : place</p>
                           <p className="text-theme2 text-xl">
-                            地點 : {selectedCourt.place}
-                          </p>
-                          <p className="text-theme2 text-xl">
-                            開放時間 : {selectedCourt.openTime}
+                            開放時間 : openTime
                           </p>
                           <p className="text-theme2 text-xl">
                             目前狀態 :{" "}
@@ -270,13 +224,13 @@ export default function test() {
                               預約場地: {selectedCourt.name}
                             </p>
                             <p className="text-theme text-xl mb-2">
-                              預約者: {users.name}
+                              預約者: {userSelf.name}
                             </p>
                             <p className="text-theme text-xl mb-2">
-                              學號: {users.studentID}
+                              學號: {userSelf.studentId}
                             </p>
                             <p className="text-theme text-xl mb-6">
-                              聯絡電話: {users.phone}
+                              聯絡電話: {userSelf.phone}
                             </p>
                             <label
                               className="text-theme text-xl mb-2"
@@ -362,7 +316,7 @@ export default function test() {
                                 placeholder="輸入留言"
                               />
                               <button
-                                className="w-1/5 text-white bg-theme border border-gray-500 border-l-0"
+                                className="w-1/5 text-white bg-theme border border-gray-500 border-l-0 hover:bg-theme2"
                                 type="submit"
                               >
                                 留言
