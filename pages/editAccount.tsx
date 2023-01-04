@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
 import Cookies from 'js-cookie';
 import UserService from "../services/userService";
+import UserShow from "./userShow";
 
 
 
@@ -13,10 +14,10 @@ export default function EditAccount() {
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const [showPassword3, setShowPassword3] = useState(false);
-    const [users, setUsers] = useState();
-    let name1:string="";
-    //let empName:string = "Rohit Sharma"; 
-    //var studentName: String = 'Peter'; 
+    const [users, setUsers] = useState({name:"",
+                                        email:"",
+                                        phone:"",
+                                        studentId:""});
     
 
     
@@ -34,17 +35,10 @@ export default function EditAccount() {
     const fetchUsers = async () => {
         const userList = await UserService.getSelfUser();
         setUsers(userList);  
-        // console.log(userList);
-        // console.log(userList.name); 
-         //console.log(typeof userList.name);
-         name1 = userList.name;
+        console.log(typeof users);
+        console.log(users.name); 
+         
     }
-    console.log(name1);
-
-    
-    // console.log(users);
-    // console.log(typeof users);
-    //console.log(users.name);
     
     const editHandler = async () => {
 
@@ -86,12 +80,12 @@ export default function EditAccount() {
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">學號</label>
                                                                     <input type="studentId" name="studentId" id="studentId" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={"user.studentId"} disabled />
+                                                                    placeholder={users.studentId} disabled />
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">電子郵件</label>
                                                                     <input value={email} onChange={(e)=> setEmail(e.target.value)} type="email" name="email" id="email" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={"user.email"} />
+                                                                    placeholder={users.email} />
                                                                 </div>
                                                             </div>
 
@@ -99,12 +93,12 @@ export default function EditAccount() {
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">暱稱</label>
                                                                     <input value={name} onChange={(e)=> setName(e.target.value)} type="name" name="name" id="name" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={name1} />
+                                                                    placeholder={users.name} />
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">聯絡電話</label>
                                                                     <input value={phone} onChange={(e)=> setPhone(e.target.value)}type="phone" name="phone" id="phone" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={"user.phone"} />
+                                                                    placeholder={users.phone} />
                                                                 </div>
                                                             </div>
                                                     </div>
@@ -150,10 +144,12 @@ export default function EditAccount() {
                                             </div>
                                             <br></br>
                                             <div className="flex gap-5">
-
-                                                <a href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <button
+                                                    className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                    onClick={() => setShowModal(false)}>
                                                     取消
-                                                </a>
+                                                </button>
+
                                                 <button
                                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                     onClick={() => editHandler()}>
