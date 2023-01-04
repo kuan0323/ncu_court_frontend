@@ -46,8 +46,8 @@ export default function NotFound() {
                                     <div className="position-absolute top-40 start-50 translate-middle">
 
                                         <Image
-                                            src="/../public/static/images/404.png"
-                                            alt="login_success"
+                                            src="/static/images/404.png"
+                                            alt="404 Not Found"
                                             width={250}
                                             height={250}
                                             className="pt-32"

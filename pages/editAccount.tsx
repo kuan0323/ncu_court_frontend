@@ -1,7 +1,10 @@
+import Head from 'next/head'
 import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
 import UserService from "../services/userService";
 import Cookies from 'js-cookie';
+
+
 
 export default function EditAccount() {
 
@@ -57,6 +60,8 @@ export default function EditAccount() {
 
             <div className=" col-span-2 row-span-1  place-items-center">
                 <div className="flex md:flex-col justify-center items-center mt-40 ">
+
+                    {/* modal */}
                     {showModal ? (
                         <div className="fixed  inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
                             <div className="w-[600px]">
@@ -65,13 +70,12 @@ export default function EditAccount() {
 
                                         <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">修改會員資料</h3>
 
-                                        <form className="space-y-6" action="#" >
-                                        {/* {
-
+                                        <form className="space-y-6" action="#">
+                                            {/* {
                                                 users.map(
-                                                    (user: any) => */}
-                                                    <div>
-                                                        <div className="flex gap-5">
+                                                    (a: any) =>
+                                                        <div key={a.name}> */}
+                                                            <div className="flex gap-5">
 
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">學號</label>
@@ -80,7 +84,7 @@ export default function EditAccount() {
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">電子郵件</label>
-                                                                    <input type="email" name="email" id="email" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                    <input value={email} onChange={(e)=> setEmail(e.target.value)} type="email" name="email" id="email" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
                                                                     placeholder={"user.email"} />
                                                                 </div>
                                                             </div>
@@ -88,16 +92,16 @@ export default function EditAccount() {
                                                             <div className="flex gap-5">
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">暱稱</label>
-                                                                    <input type="name" name="name" id="name" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                    <input value={name} onChange={(e)=> setName(e.target.value)} type="name" name="name" id="name" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
                                                                     placeholder={"user.name"} />
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">聯絡電話</label>
-                                                                    <input type="phone" name="phone" id="phone" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                    <input value={phone} onChange={(e)=> setPhone(e.target.value)}type="phone" name="phone" id="phone" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
                                                                     placeholder={"user.phone"} />
                                                                 </div>
                                                             </div>
-                                                    </div>
+                                                    {/* </div> */}
                                                             
                                                         
                                                         
@@ -141,13 +145,13 @@ export default function EditAccount() {
                                             <br></br>
                                             <div className="flex gap-5">
 
-                                                <a href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <link href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                     取消
-                                                </a>
+                                                </link>
                                                 <button
                                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                                    onClick={() => editHandler()}>
-                                                    儲存
+                                                    onClick={() => editHandler()}
+                                                >儲存
                                                 </button>
                                             </div>
 
