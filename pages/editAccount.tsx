@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
-import UserService from "../services/userService";
 import Cookies from 'js-cookie';
+import UserService from "../services/userService";
 
 export default function EditAccount() {
 
