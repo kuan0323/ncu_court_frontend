@@ -17,13 +17,13 @@ export default function reserveRecord() {
 
     const fetchReserves = async () => {
 
-        const userList = await reserveService.getReservation();//還要改成動態存取
+        const userList = await reserveService.getReservation();
         setUsers(userList);
 
     }
 
-    const cancelHandler = async (courtName: string) => {
-        const cancle = await reserveService.cancelReservation(courtName);
+    const cancelHandler = async (reservationId: string) => {
+        const cancle = await reserveService.cancelReservation(reservationId);
         window.location.reload();
     }
 
@@ -107,7 +107,7 @@ export default function reserveRecord() {
                                                                     {user.court.price}
                                                                 </p>
                                                             </td>
-                                                            <td scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => cancelHandler(user.courtName)}>取消預約</button></td>
+                                                            <td scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-center"><button className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600" onClick={() => cancelHandler(user.id)}>取消預約</button></td>
                                                         </tr>
                                                 )}</thead>
 

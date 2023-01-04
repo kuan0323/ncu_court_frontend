@@ -10,14 +10,11 @@ export default class reserveService {
         return response.data;
     };
 
-    static async cancelReservation(courtId: string) {
-        const response = await api().delete('/api/reservations', {
+    static async cancelReservation(reservationId: string) {
+        const response = await api().delete(`/api/reservations/${reservationId}`, {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
-            params: {
-                courtId: courtId
-            }
         });
-        return response.data;
+        // return response.data;
     }
     // static async getPicture(courtName :string) {
     //     const response = await api().get('/api/courts', {
