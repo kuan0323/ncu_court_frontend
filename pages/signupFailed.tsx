@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from 'next/image'
 import Link from 'next/link';
 
+
 export default function NotFound() {
 
     return (
@@ -38,17 +39,15 @@ export default function NotFound() {
                                     <div className="position-absolute top-40 start-50 translate-middle">
 
                                         <Image
-                                            src="/static/images/loginFailed.png"
-                                            alt="login_failed"
-                                            width={350}
-                                            height={350}
-                                            className="pt-44"
+                                            src="/static/images/signupFailed.png"
+                                            alt="signup_failed"
+                                            width={250}
+                                            height={250}
+                                            className="pt-32"
                                         />
-                                        <br></br><br></br>
-
-
-                                        <Link href="/">
-                                            <button type="submit" className="text-white bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">返回登入頁面</button>
+                                        <br></br>
+                                        <Link href="/signup">
+                                            <button type="submit" className="text-white bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">返回註冊頁面</button>
                                         </Link>
                                     </div>
                                 </div>

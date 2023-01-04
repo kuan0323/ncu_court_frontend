@@ -11,15 +11,6 @@ export default class UserService {
         return response.data;
     }
 
-    static async getUserById(id: string, password: string) {
-        const response = await api().get(`/api/users?sortby=${id}`, {
-            headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
-        });
-        // if(response.name == id){ }
-        // console.log(response);
-        return response.data;
-    }
-
 
     static async editUsers(name: string, phone: string, email: string, oldPassword: string, newPassword: string) {
         const response = await api().put('/api/users', {
