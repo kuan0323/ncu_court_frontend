@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import AdminNavBar from "../components/AdminNavBar";
+//import reserveService from "../services/reserveService";
+import courtService from "../services/courtService"
 
 export default function ReservationShow() {
+
+    const [reservation, setReservation] = useState([]);
+    useEffect(() => {
+        fetchReservation();
+    }, []);
+
+    const fetchReservation = async () => {
+        const reservationList = await courtService.getReservaiton('');
+        setReservation(reservationList);
+    }
+
     return( 
 
         <div>
@@ -17,9 +31,9 @@ export default function ReservationShow() {
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
+                                    <path fillRule="evenodd"
                                     d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd"></path>
+                                    clipRule="evenodd"></path>
                                 </svg>
                             </div>
                             <input type="text" id="table-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
@@ -41,12 +55,6 @@ export default function ReservationShow() {
                                             學號
                                             </th>
                                             <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                            Email
-                                            </th>
-                                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                            電話
-                                            </th>
-                                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                             日期
                                             </th>
                                             <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
@@ -58,19 +66,21 @@ export default function ReservationShow() {
                                         </tr>
                                         </thead>
 
-                                        <tbody>
+                                        {
+                            reservation.map(
+                                (reservation: any) =>
+                                    <tbody key={reservation._id}>
+
                                             <tr className="border-b">
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> </td>
-                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>
-                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>
-                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>
-                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>
-                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"> </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{reservation.courtId}</td>
+                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{reservation.userId}</td>
+                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{reservation.date}</td>
+                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{reservation.time}</td>
                                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">取消預約</button>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                        </tbody>)}
 
                                     </table>
                                 </div>

@@ -48,6 +48,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+<<<<<<<< HEAD:pages/tennisCourts.tsx
 export default function test() {
   const exampleCourt = {
     name: "exampleName",
@@ -72,6 +73,9 @@ export default function test() {
     setUserSelf(selfProfile);
   };
 
+========
+export default function Courts() {
+>>>>>>>> main:pages/courts.tsx
   const [open, setOpen] = useState(false);
   const [resOpen, setResOpen] = useState(false);
   return (
@@ -289,7 +293,8 @@ export default function test() {
                                         ? "bg-gray-50"
                                         : "bg-white",
                                       "px-4 py-2 flex w-full"
-                                    )}
+                                    ) }
+                                    key={message.id}
                                   >
                                     <div className="w-1/4">
                                       <p className="text-theme font-bold text-xl">
