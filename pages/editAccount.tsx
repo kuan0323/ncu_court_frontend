@@ -3,6 +3,8 @@ import NavBar from '../components/NavBar'
 import Cookies from 'js-cookie';
 import UserService from "../services/userService";
 
+
+
 export default function EditAccount() {
 
     const [showModal, setShowModal] = useState(true);
