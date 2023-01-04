@@ -3,8 +3,8 @@ import Cookies from 'js-cookie';
 
 export default class UserService {
 
-    static async getUser(sortby: string, role: string) {
-        const response = await api().get(`/api/users?sortby=${sortby}&role=${role}`, {
+    static async getSelfUser() {
+        const response = await api().get(`/api/users/profile`, {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
 
         });
