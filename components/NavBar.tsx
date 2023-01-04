@@ -18,9 +18,9 @@ export default function NavBar({
   myAccount: boolean;
 }) {
   const navigation = [
-    { name: "首頁", href: "#", current: mainPage },
+    { name: "首頁", href: "/home", current: mainPage },
     { name: "我的預約", href: "#", current: myReserve },
-    { name: "我的帳戶", href: "#", current: myAccount },
+    { name: "我的帳戶", href: "/editAccount", current: myAccount },
   ];
   return (
     <Disclosure as="nav" className="bg-theme">
@@ -43,14 +43,14 @@ export default function NavBar({
                 <div className="flex flex-shrink-0 items-center">
                   <Image
                     className="block h-8 w-auto lg:hidden"
-                    src="/../public/static/images/kid.png"
+                    src="/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}
                   />
                   <Image
                     className="hidden h-8 w-auto lg:block"
-                    src="/../public/static/images/kid.png"
+                    src="/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}

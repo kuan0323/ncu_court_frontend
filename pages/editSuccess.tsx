@@ -2,8 +2,7 @@ import Head from "next/head";
 import Image from 'next/image'
 import Link from 'next/link';
 
-
-export default function NotFound() {
+export default function EditSuccess() {
 
     return (
 
@@ -46,16 +45,17 @@ export default function NotFound() {
                                     <div className="position-absolute top-40 start-50 translate-middle">
 
                                         <Image
-                                            src="/static/images/404.png"
-                                            alt="404 Not Found"
-                                            width={250}
-                                            height={250}
+                                            src="/../public/static/images/editSuccess.png"
+                                            alt="login_success"
+                                            width={150}
+                                            height={150}
                                             className="pt-32"
                                         />
                                         <br></br>
-                                        <Link href="/">
-                                            <button type="submit" className="text-white bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">返回登入頁面</button>
+                                        <Link href="/home">
+                                            <button type="submit" className="text-white bg-theme hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-4 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">返回首頁</button>
                                         </Link>
+
                                     </div>
                                 </div>
 
@@ -63,6 +63,7 @@ export default function NotFound() {
                         </div>
 
                     </div>
+
 
                 </div>
             </div >
