@@ -99,4 +99,10 @@ export default class courtService {
         });
         return response.data;
       }
+
+      static async deleteMessage(id: string) {
+        await api().delete(`/api/messages/${id}`, {
+            headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
+        },);
+    }
 }
