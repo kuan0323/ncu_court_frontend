@@ -5,9 +5,16 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import courtService from "../services/courtService";
 import userService from "../services/userService";
 import messageService from "../services/messageService";
+import reserveService from "../services/reserveService";
 import Cookies from "js-cookie";
+import React from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { MdOutlineClose } from "react-icons/md";
+import { HiLightningBolt, HiCheck } from "react-icons/hi";
+import styles from "../styles/App.module.css";
+import classNames from "classnames";
 
-function classNames(...classes: string[]) {
+function classNameS(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -24,6 +31,12 @@ export default function tennisCourts() {
   const [userSelf, setUserSelf] = useState<any>();
   const [messages, setMessages] = useState<any>([]);
   let inputMessage = "";
+  let inputDate = "";
+  let inputTime = "";
+  const today = new Date().toISOString().split("T")[0];
+  const twoWeeksFromToday = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split("T")[0];
 
   useEffect(() => {
     fetchCourts();
@@ -43,7 +56,33 @@ export default function tennisCourts() {
     setMessages(messageList);
   };
   const leaveMessage = async (courtId: string, content: string) => {
-    const theMessage = await messageService.createMessage(courtId, content);
+    const newMessage = await messageService.createMessage(courtId, content);
+  };
+  const reserveCourt = async (date: string, time: string, courtId: string) => {
+    const newReservation = await reserveService.createReservation(
+      date,
+      time,
+      courtId
+    );
+  };
+  const checkReserve = async (
+    date: string,
+    time: string,
+    courtId: string
+  ): Promise<boolean> => {
+    const allReservations = await reserveService.getReservation(
+      userSelf.studentId
+    );
+    for (let i = 0; i < allReservations.length; i++) {
+      if (
+        allReservations[i].date == date &&
+        allReservations[i].time == time &&
+        allReservations[i].court.id == courtId
+      ) {
+        return Promise.resolve(true);
+      }
+    }
+    return Promise.resolve(false);
   };
 
   const [open, setOpen] = useState(false);
@@ -54,6 +93,7 @@ export default function tennisCourts() {
         <div>
           <NavBar mainPage={false} myReserve={false} myAccount={false}></NavBar>
         </div>
+        <Toaster />
         <div className=" mx-auto max-w-2xl py-8 px-4 sm:py-16 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="mb-5 text-2xl font-bold tracking-tight text-theme">
             網球場列表
@@ -153,7 +193,7 @@ export default function tennisCourts() {
                           </p>
                           <p className="text-theme2 text-xl">地點 : place</p>
                           <p className="text-theme2 text-xl">
-                            開放時間 : openTime
+                            開放時間 : 8:00 ~ 20:00
                           </p>
                           <p className="text-theme2 text-xl">
                             目前狀態 :{" "}
@@ -207,51 +247,94 @@ export default function tennisCourts() {
                             <p className="text-theme text-xl mb-6">
                               聯絡電話: {userSelf.phone}
                             </p>
-                            <label
-                              className="text-theme text-xl mb-2"
-                              htmlFor="Date"
+                            <form
+                              onSubmit={(event) => {
+                                event.preventDefault();
+                                const form = event.target as HTMLFormElement;
+
+                                if (inputTime !== "" && inputDate !== "") {
+                                  let thePromise = checkReserve(
+                                    inputDate,
+                                    inputTime,
+                                    selectedCourt.id
+                                  );
+                                  thePromise.then(function (result) {
+                                    if (result == true) {
+                                      notifyFull();
+                                    } else {
+                                      reserveCourt(
+                                        inputDate,
+                                        inputTime,
+                                        selectedCourt.id
+                                      );
+                                      notifySuccess();
+                                      form.reset();
+                                    }
+                                  });
+                                } else {
+                                  notifyFill();
+                                }
+                              }}
                             >
-                              日期:{"    "}
-                            </label>
-                            <input
-                              className="text-gray-300 text-xl mb-2 border-b border-gray-500 focus:outline-none w-1/2"
-                              type="date"
-                              id="Date"
-                            />
-                            <br />
-                            <label
-                              className="text-theme text-xl mb-8"
-                              htmlFor="Time"
-                            >
-                              時間:{"    "}
-                            </label>
-                            <select
-                              name="time"
-                              id="Time"
-                              className="text-gray-800 text-xl border-b border-gray-500 focus:outline-none mb-8"
-                            >
-                              <option value="">7:00 ~ 8:00</option>
-                              <option value="">8:00 ~ 9:00</option>
-                              <option value="">9:00 ~ 10:00</option>
-                              <option value="">10:00 ~ 11:00</option>
-                              <option value="">11:00 ~ 12:00</option>
-                              <option value="">12:00 ~ 13:00</option>
-                              <option value="">13:00 ~ 14:00</option>
-                              <option value="">14:00 ~ 15:00</option>
-                              <option value="">15:00 ~ 16:00</option>
-                              <option value="">16:00 ~ 17:00</option>
-                              <option value="">17:00 ~ 18:00</option>
-                              <option value="">18:00 ~ 19:00</option>
-                              <option value="">19:00 ~ 20:00</option>
-                              <option value="">20:00 ~ 21:00</option>
-                            </select>
-                            <br />
-                            <button
-                              type="submit"
-                              className="mt-2 rounded-xl bg-theme p-1 text-white hover:shadow-lg"
-                            >
-                              <p className="mx-16 my-1 text-white">確認預約</p>
-                            </button>
+                              <label
+                                className="text-theme text-xl mb-2"
+                                htmlFor="Date"
+                              >
+                                日期:{"    "}
+                              </label>
+                              <input
+                                className="text-gray-300 text-xl mb-2 border-b border-gray-500 focus:outline-none w-1/2"
+                                type="date"
+                                id="Date"
+                                min={today}
+                                max={twoWeeksFromToday}
+                                onChange={(event) => {
+                                  inputDate = event.target.value;
+                                  inputDate = inputDate.replace(/-/g, "/");
+                                }}
+                              />
+                              <br />
+                              <label
+                                className="text-theme text-xl mb-8"
+                                htmlFor="Time"
+                              >
+                                時間:{"    "}
+                              </label>
+                              <select
+                                name="time"
+                                id="Time"
+                                className="text-gray-800 text-xl border-b border-gray-500 focus:outline-none mb-8"
+                                onChange={(event) => {
+                                  inputTime = event.target.value;
+                                }}
+                              >
+                                <option disabled selected>
+                                  -- 選擇時段 --
+                                </option>
+                                <option value="8:00">8:00 ~ 9:00</option>
+                                <option value="9:00">9:00 ~ 10:00</option>
+                                <option value="10:00">10:00 ~ 11:00</option>
+                                <option value="11:00">11:00 ~ 12:00</option>
+                                <option value="12:00">12:00 ~ 13:00</option>
+                                <option value="13:00">13:00 ~ 14:00</option>
+                                <option value="14:00">14:00 ~ 15:00</option>
+                                <option value="15:00">15:00 ~ 16:00</option>
+                                <option value="16:00">16:00 ~ 17:00</option>
+                                <option value="17:00">17:00 ~ 18:00</option>
+                                <option value="18:00">18:00 ~ 19:00</option>
+                                <option value="19:00">19:00 ~ 20:00</option>
+                                <option value="20:00">20:00 ~ 21:00</option>
+                              </select>
+                              <br />
+                              <button
+                                type="submit"
+                                className="mt-2 rounded-xl bg-theme p-1 text-white hover:shadow-lg"
+                              >
+                                <p className="mx-16 my-1 text-white">
+                                  確認預約
+                                </p>
+                              </button>
+                            </form>
                           </div>
                         ) : (
                           <div>
@@ -259,7 +342,7 @@ export default function tennisCourts() {
                               <ul className="list-none w-full">
                                 {messages.map((message: any, index: any) => (
                                   <li
-                                    className={classNames(
+                                    className={classNameS(
                                       index % 2 == 0
                                         ? "bg-gray-50"
                                         : "bg-white",
@@ -311,7 +394,6 @@ export default function tennisCourts() {
                                   onChange={(event) => {
                                     inputMessage = event.target.value;
                                   }}
-                                  required
                                 />
                                 <button
                                   className="w-1/5 text-white bg-theme border border-gray-500 border-l-0 hover:bg-theme2"
@@ -335,3 +417,81 @@ export default function tennisCourts() {
     </div>
   );
 }
+
+const notifyFill = () => {
+  toast.custom(
+    (t) => (
+      <div
+        className={classNames([
+          styles.notificationWrapper,
+          t.visible ? "top-0" : "-top-96",
+          "bg-red-400",
+        ])}
+      >
+        <div className={styles.iconWrapper}>
+          <HiLightningBolt />
+        </div>
+        <div className={styles.contentWrapper}>
+          <h1>填寫缺漏</h1>
+          <p>請選擇想要的日期和時間</p>
+        </div>
+        <div className={styles.closeIcon} onClick={() => toast.dismiss(t.id)}>
+          <MdOutlineClose />
+        </div>
+      </div>
+    ),
+    { id: "unique-notification", position: "top-center" }
+  );
+};
+
+const notifySuccess = () => {
+  toast.custom(
+    (t) => (
+      <div
+        className={classNames([
+          styles.notificationWrapper,
+          t.visible ? "top-0" : "-top-96",
+          "bg-theme",
+        ])}
+      >
+        <div className={styles.iconWrapper}>
+          <HiLightningBolt />
+        </div>
+        <div className={styles.contentWrapper}>
+          <h1>成功預約</h1>
+          <p>預約已加到您的預約清單</p>
+        </div>
+        <div className={styles.closeIcon} onClick={() => toast.dismiss(t.id)}>
+          <MdOutlineClose />
+        </div>
+      </div>
+    ),
+    { id: "unique-notification", position: "top-center" }
+  );
+};
+
+const notifyFull = () => {
+  toast.custom(
+    (t) => (
+      <div
+        className={classNames([
+          styles.notificationWrapper,
+          t.visible ? "top-0" : "-top-96",
+          "bg-red-400",
+        ])}
+      >
+        <div className={styles.iconWrapper}>
+          <HiLightningBolt />
+        </div>
+        <div className={styles.contentWrapper}>
+          <h1>已被預約</h1>
+          <p>你選擇的該時段已被預約，請重新選擇</p>
+        </div>
+        <div className={styles.closeIcon} onClick={() => toast.dismiss(t.id)}>
+          <MdOutlineClose />
+        </div>
+      </div>
+    ),
+    { id: "unique-notification", position: "top-center" }
+  );
+};
