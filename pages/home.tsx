@@ -27,7 +27,7 @@ export default function Home() {
               <ul className="mt-3 flex flex-wrap">
                 <div className="p-5">
                   <a
-                    href="#"
+                    href="./basketballCourts"
                     className="text-decoration-none inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     查看場地
@@ -66,7 +66,7 @@ export default function Home() {
               <ul className="mt-3 flex flex-wrap">
                 <div className="p-5">
                   <a
-                    href="#"
+                    href="./badmintonCourts"
                     className="text-decoration-none inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     查看場地
@@ -105,7 +105,7 @@ export default function Home() {
               <ul className="mt-3 flex flex-wrap">
                 <div className="p-5">
                   <a
-                    href="#"
+                    href="./tennisCourts"
                     className="text-decoration-none inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     查看場地
@@ -144,7 +144,7 @@ export default function Home() {
               <ul className="mt-3 flex flex-wrap">
                 <div className="p-5">
                   <a
-                    href="#"
+                    href="./volleyballCourts"
                     className="text-decoration-none inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     查看場地
