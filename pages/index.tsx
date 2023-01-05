@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AppBar from "../components/AppBar";
 import AuthService from "../services/authService";
+import UserService from "../services/userService";
 
 import Cookies from 'js-cookie';
 import Head from "next/head";
@@ -17,7 +18,13 @@ export default function Login() {
         try {
             const serviceToken = await AuthService.login(studentId, password);
             Cookies.set('service_token', serviceToken);
-            window.location.replace("/home");
+
+            const profile = await UserService.getSelfProfile();
+            if (profile.role == "regular") {
+                window.location.replace("/home");
+            } else {
+                window.location.replace("/userShow");
+            }
         }
         catch (e) {
             if (studentId == "") {
