@@ -7,7 +7,7 @@ import reserveService from "../services/reserveService";
 import { Link } from 'react-router-dom';
 
 
-export default function reserveRecord() {
+export default function ReserveRecord() {
     const [users, setUsers] = useState([]);
     // const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
@@ -86,7 +86,7 @@ export default function reserveRecord() {
                                                 users.map(
                                                     (user: any) =>
 
-                                                        <tr>
+                                                        <tr key = {user.name}>
                                                             <td>
                                                                 <p className="text-sm font-medium text-gray-900 text-center">
                                                                     {user.court.name}

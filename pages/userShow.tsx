@@ -4,23 +4,24 @@ import adminUserService from "../services/adminUserService"
 
 export default function UserShow() {
 
- const [users, setUsers] = useState([]);
+ 	const [users, setUsers] = useState([]);
 
     useEffect(() => {
         fetchUsers();
+		//fetchUsersLastModified();
     }, []);
 
     const [name, setName] = useState('');
 
  //默認排序、按註冊日期排序
     const fetchUsers = async () => {
-        const userList = await adminUserService.getUsers('createdTime', 'regular', '');
+        const userList = await adminUserService.getUsers2('createdTime', 'regular');
         setUsers(userList);
     }
 
  //按修改日期排列
     const fetchUsersLastModified = async () => {
-        const userList = await adminUserService.getUsers('lastModified','regular','');
+        const userList = await adminUserService.getUsers2('lastModified','regular');
         setUsers(userList);
     }
 
@@ -33,7 +34,6 @@ export default function UserShow() {
 	const deleteHandler = async (id: string) => {
         await adminUserService.delete(id);
         window.location.reload();
-
     }
 
 		return(
