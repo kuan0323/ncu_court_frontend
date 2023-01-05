@@ -10,6 +10,8 @@ export default class courtService {
         });
         return response.data;
     }
+
+    // photo不確定要宣告什麼型態，只有any不會跳錯
     static async createCourt(photo: any, name: string, price: string, type: string) {
         const formData = new FormData();
         formData.append("photo", photo); // (name, value)
@@ -30,21 +32,23 @@ export default class courtService {
                 data: formData
             }
         });
+        //  確定有抓到值了，但payload永遠少了photo QQ
         console.log(photo);
         // return response.data;
     }
 
-    static async uploadImage(photo: any,) {
-        const formData = new FormData();
-        formData.append("photo", photo); // (name, attribute)
-        const ext = photo.name.split('.')[photo.name.split('.').length - 1]
-        const response = await api().post(`photo?ext=${ext}`, formData, {
-            headers: {
-                Authorization: `Bearer ${Cookies.get('service_token')}`,
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-    }
+    // 好像用不到? 先註解掉
+    // static async uploadImage(photo: any,) {
+    //     const formData = new FormData();
+    //     formData.append("photo", photo); // (name, attribute)
+    //     const ext = photo.name.split('.')[photo.name.split('.').length - 1]
+    //     const response = await api().post(`photo?ext=${ext}`, formData, {
+    //         headers: {
+    //             Authorization: `Bearer ${Cookies.get('service_token')}`,
+    //             'Content-Type': 'multipart/form-data'
+    //         }
+    //     });
+    // }
 
     static async deleteCourt(id: string) {
         await api().delete(`/api/courts/${id}`, {
