@@ -31,36 +31,177 @@ export default function EditAccount() {
     const fetchUsers = async () => {
         const userList = await UserService.getSelfUser();
         setUsers(userList);
-        // console.log(users.email);
-
-        // setEmail(users.email); 
-        // console.log(email);
-        // console.log(typeof users);
-        // console.log(users.name); 
-         
     }
     
     const editHandler = async () => {
 
         try{
-              if(name === '')
+              if(oldPassword === '')//沒改密碼
               {
-                  setName(users.name);
+                if(name !=='' && email !=='' && phone !=='')//都改
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(name ==='' && email ==='' && phone!=='')//改phone
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: phone,
+                        email: undefined,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(name==='' && phone==='' && email!=='')//改email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: undefined,
+                        email: email,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(email==='' && phone===''&& name!=='')//改name
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: undefined,
+                        email: undefined,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(email===''&& name!=='' && phone!=='')//改name&phone
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: phone,
+                        email: undefined,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(phone==='' && name!=='' && email!=='')//改name&email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: undefined,
+                        email: email,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(name==='' && phone!==''&& email!=='')//改phone&email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: phone,
+                        email: email,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else//都沒改
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: undefined,
+                        email: undefined,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
               }
-              if(email === '')
+              else//有改密碼
               {
-                  setEmail(users.email);
+                if(name !=='' && email !=='' && phone !=='')//都改
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(name ==='' && email ==='' && phone!=='')//改phone
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: phone,
+                        email: undefined,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(name==='' && phone==='' && email!=='')//改email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: undefined,
+                        email: email,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(email==='' && phone===''&& name!=='')//改name
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: undefined,
+                        email: undefined,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(email===''&& phone!==''&& name!=='')//改name&phone
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: phone,
+                        email: undefined,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(phone===''&&name!=='' && email !=='')//改name&email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: undefined,
+                        email: email,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(name==='' && email !=='' && phone!=='')//改phone&email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: phone,
+                        email: email,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else//都沒改
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: undefined,
+                        email: undefined,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
               }
-              if(phone === '')
-              {
-                  //setPhone(users.phone);
-                  
-              }
-                console.log(email);
-
-            
-
-            const serviceToken = await UserService.editUsers(name,phone, email, oldPassword, newPassword);
             window.location.replace("/editSuccess");
         }
         catch(e){

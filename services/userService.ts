@@ -12,15 +12,17 @@ export default class UserService {
     }
 
 
-    static async editUsers(name: string, phone: string, email: string, oldPassword: string, newPassword: string) {
-        const response = await api().put('/api/users', {
-
-            name: name,
-            phone: phone,
-            email: email,
-            oldPassword: oldPassword,
-            newPassword: newPassword
-        },
+    static async editUsers(
+        {name, phone, email, oldPassword, newPassword}
+        :{name?: string, phone?: string, email?: string, oldPassword?: string, newPassword?: string}) {
+        
+            const data: any = {};
+        if (name) data.name = name;
+        if (phone) data.phone = phone;
+        if (email) data.email = email;
+        if (oldPassword) data.oldPassword = oldPassword;
+        if (newPassword) data.newPassword = newPassword;
+        const response = await api().put('/api/users', data,
             { headers: { Authorization: `Bearer ${Cookies.get('service_token')}` } }
         );
         return response.data;
