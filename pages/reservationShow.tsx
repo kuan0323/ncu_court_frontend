@@ -76,7 +76,7 @@ export default function ReservationShow() {
                                             場地名稱
                                             </th>
                                             <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                            學號
+                                            姓名
                                             </th>
                                             <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                             日期

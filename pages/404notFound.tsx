@@ -26,13 +26,6 @@ export default function NotFound() {
             </style>
 
             <div className="container">
-                {/* <Image
-                    src="/../public/static/images/kid.png"
-                    alt="kid"
-                    width={330}
-                    height={320}
-                    className="z-3 position-absolute bottom-3.5 left-40"
-                /> */}
                 <div className="row h-full">
                     <div className="col-4 ">
                         <h1 className="text-left text-white pt-32 pl-16">中央大學<br></br>場地預約網</h1>
