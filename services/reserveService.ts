@@ -9,6 +9,13 @@ export default class reserveService {
     return response.data;
   }
 
+  static async getAllReservation() {
+    const response = await api().get("/api/allReservations", {
+      headers: { Authorization: `Bearer ${Cookies.get("service_token")}` },
+    });
+    return response.data;
+  }
+
   static async cancelReservation(reservationId: string) {
     const response = await api().delete(`/api/reservations/${reservationId}`, {
       headers: { Authorization: `Bearer ${Cookies.get("service_token")}` },

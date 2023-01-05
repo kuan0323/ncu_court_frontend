@@ -66,7 +66,7 @@ export default function basketballCourts() {
     setUserSelf(selfProfile);
   };
   const fetchAllReservations = async () => {
-    const allReservationsList = await reserveService.getReservation();
+    const allReservationsList = await reserveService.getAllReservation();
     setReservations(allReservationsList);
   };
   const fetchMessagesByCourt = async (courtId: string) => {
