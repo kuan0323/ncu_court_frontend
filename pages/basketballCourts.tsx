@@ -70,9 +70,7 @@ export default function basketballCourts() {
     time: string,
     courtId: string
   ): Promise<boolean> => {
-    const allReservations = await reserveService.getReservation(
-      userSelf.studentId
-    );
+    const allReservations = await reserveService.getReservation();
     for (let i = 0; i < allReservations.length; i++) {
       if (
         allReservations[i].date == date &&
