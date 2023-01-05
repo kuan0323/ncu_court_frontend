@@ -30,7 +30,7 @@ export default class ExampleService {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
             params: {
                 sortBy: sortBy,
-                role: role,
+                role: role
             }
         });
         return response.data;

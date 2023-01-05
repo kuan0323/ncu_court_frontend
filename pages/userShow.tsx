@@ -27,7 +27,7 @@ export default function UserShow() {
 
  //按姓名搜尋
     const fetchUsersByName = async () => {
-        const userList = await adminUserService.getUsers('specificName', 'regular', name);
+        const userList = await adminUserService.getUsers('createdTime', 'regular', name);
         setUsers(userList);
     }
 

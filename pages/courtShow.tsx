@@ -123,7 +123,7 @@ export default function CourtShow() {
                                         leaveFrom="opacity-100 translate-y-0 md:scale-100"
                                         leaveTo="opacity-0 translate-y-4 md:translate-y-0 md:scale-95"
                                     >
-                                        <Dialog.Panel className=" lex transform transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl ">
+                                        <Dialog.Panel className="flex transform transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
                                             <div className="rounded-lg relative flex w-full items-center overflow-hidden bg-white px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
 
                                                 <button
@@ -149,7 +149,7 @@ export default function CourtShow() {
                                                                 {
                                                                     message.map(
                                                                         (message: any) =>
-                                                                            <tbody className="">
+                                                                            <tbody key={message.content}>
                                                                                 <tr className="relative transform scale-100 py-1 whitespace-no-wrap border-b-2 border-blue-100 cursor-default">
 
 
