@@ -7,7 +7,7 @@ import reserveService from "../services/reserveService";
 import { Link } from 'react-router-dom';
 
 
-export default function reserveRecord() {
+export default function ReserveRecord() {
     const [users, setUsers] = useState([]);
     // const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
