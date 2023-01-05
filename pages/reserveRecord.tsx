@@ -86,7 +86,7 @@ export default function ReserveRecord() {
                                                 users.map(
                                                     (user: any) =>
 
-                                                        <tr>
+                                                        <tr key = {user.name}>
                                                             <td>
                                                                 <p className="text-sm font-medium text-gray-900 text-center">
                                                                     {user.court.name}
