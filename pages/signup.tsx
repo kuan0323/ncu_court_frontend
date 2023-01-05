@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import UserService from "../services/userService";
 import Link from 'next/link';
-import AppBar from "../components/AppBar";
 
 import Cookies from 'js-cookie';
 
