@@ -5,22 +5,12 @@ import adminUserService from "../services/adminUserService";
 export default function UserShow() {
   const [users, setUsers] = useState([]);
 
-  const [users, setUsers] = useState([]);
-
   useEffect(() => {
     fetchUsers();
     //fetchUsersLastModified();
   }, []);
 
-  //默認排序、按註冊日期排序
-  const fetchUsers = async () => {
-    const userList = await adminUserService.getUsers(
-      "createdTime",
-      "regular",
-      ""
-    );
-    setUsers(userList);
-  };
+  const [name, setName] = useState('');
 
   //默認排序、按註冊日期排序
   const fetchUsers = async () => {

@@ -9,7 +9,6 @@ export default function ReservationShow() {
     fetchReservation();
   }, []);
 
-  const [reservation, setReservation] = useState([]);
   const [name, setName] = useState("");
 
   useEffect(() => {
