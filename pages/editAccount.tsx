@@ -4,10 +4,6 @@ import Cookies from 'js-cookie';
 import UserService from "../services/userService";
 import UserShow from "./userShow";
 
-
-
-
-
 export default function EditAccount() {
 
     const [showModal, setShowModal] = useState(true);
@@ -17,10 +13,10 @@ export default function EditAccount() {
     const [users, setUsers] = useState({name:"",
                                         email:"",
                                         phone:"",
-                                        studentId:""});
+                                        studentId:"",
+                                        password:""});
     
 
-    
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
@@ -34,16 +30,37 @@ export default function EditAccount() {
 
     const fetchUsers = async () => {
         const userList = await UserService.getSelfUser();
-        setUsers(userList);  
-        console.log(typeof users);
-        console.log(users.name); 
+        setUsers(userList);
+        // console.log(users.email);
+
+        // setEmail(users.email); 
+        // console.log(email);
+        // console.log(typeof users);
+        // console.log(users.name); 
          
     }
     
     const editHandler = async () => {
 
         try{
-            const serviceToken = await UserService.editUsers(name, phone, email, oldPassword, newPassword);
+              if(name === '')
+              {
+                  setName(users.name);
+              }
+              if(email === '')
+              {
+                  setEmail(users.email);
+              }
+              if(phone === '')
+              {
+                  //setPhone(users.phone);
+                  
+              }
+                console.log(email);
+
+            
+
+            const serviceToken = await UserService.editUsers(name,phone, email, oldPassword, newPassword);
             window.location.replace("/editSuccess");
         }
         catch(e){
@@ -84,21 +101,21 @@ export default function EditAccount() {
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">電子郵件</label>
-                                                                    <input value={email} onChange={(e)=> setEmail(e.target.value)} type="email" name="email" id="email" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={users.email} />
+                                                                    <input type="text" defaultValue={users.email} onChange={(e)=> setEmail(e.target.value)}  name="email" id="email" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                    />
                                                                 </div>
                                                             </div>
 
                                                             <div className="flex gap-5">
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">暱稱</label>
-                                                                    <input value={name} onChange={(e)=> setName(e.target.value)} type="name" name="name" id="name" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={users.name} />
+                                                                    <input  defaultValue={users.name} onChange={(e)=> setName(e.target.value)} type="text"  name="name" id="name" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                     />
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">聯絡電話</label>
-                                                                    <input value={phone} onChange={(e)=> setPhone(e.target.value)}type="phone" name="phone" id="phone" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={users.phone} />
+                                                                    <input defaultValue={users.phone} onChange={(e)=> setPhone(e.target.value)}type="text" name="phone" id="phone" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                     />
                                                                 </div>
                                                             </div>
                                                     </div>
