@@ -13,11 +13,11 @@ export default class ExampleService {
         return response.data;
     }
 
-    static async getUsers(sortby: string, role: string, keyword: string) {
+    static async getUsers(sortBy: string, role: string, keyword: string) {
         const response = await api().get('/api/users', {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
             params: {
-                sortby: sortby,
+                sortBy: sortBy,
                 role: role,
                 keyword: keyword
             }
@@ -25,6 +25,16 @@ export default class ExampleService {
         return response.data;
     }
 
+    static async getUsers2(sortBy: string, role: string) {
+        const response = await api().get('/api/users', {
+            headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
+            params: {
+                sortBy: sortBy,
+                role: role,
+            }
+        });
+        return response.data;
+    }
 
     static async delete(id: string) {
 
