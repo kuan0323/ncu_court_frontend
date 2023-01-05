@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Fragment } from "react";
-import Cookies from 'js-cookie';
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -26,9 +25,6 @@ export default function NavBar({
     { name: "預約紀錄管理", href: "/reservationShow", current: manageReservation },
     { name: "場地管理", href: "/courtShow", current: manageCourt },
   ];
-  const eraseCookies = async () => {
-    Cookies.remove("service_token");
-  }
   return (
     <Disclosure as="nav" className="bg-theme">
       {({ open }) => (
@@ -90,9 +86,8 @@ export default function NavBar({
                 <button
                   type="button"
                   className="rounded-xl bg-theme2 p-1 text-white hover:ring-2 hover:ring-teal-700"
-                  onClick={() => eraseCookies()}
                 >
-                  <a href="/" className="text-decoration-none">
+                  <a href="#" className="text-decoration-none">
                     <p className="mx-4 my-0.5 text-white">登出</p>
                   </a>
                 </button>

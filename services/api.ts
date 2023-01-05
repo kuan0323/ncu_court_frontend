@@ -11,5 +11,3 @@ export default (): AxiosInstance => {
 //     optionSuccessStatus: 200
 // }
 // app.use(cors(corsOptions));
-
-  
