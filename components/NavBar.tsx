@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Fragment } from "react";
-import cookies from 'react-cookies';
+import Cookies from 'js-cookie';
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
@@ -24,7 +24,7 @@ export default function NavBar({
     { name: "我的帳戶", href: "/editAccount", current: myAccount },
   ];
   const eraseCookies = async () => {
-    cookies.remove("service_token");
+    Cookies.remove("service_token");
   }
   return (
     <Disclosure as="nav" className="bg-theme">
