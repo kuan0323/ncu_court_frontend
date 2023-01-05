@@ -6,6 +6,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function CourtShow() {
+  const [court, setCourt] = useState([]);
+  useEffect(() => {
+    fetchCourt();
+  }, []);
 
     const [open, setOpen] = useState(false);
     const [resOpen, setResOpen] = useState(false);
@@ -184,5 +188,7 @@ export default function CourtShow() {
         </Transition.Root></div>
 
         </div>
-    )
+      </div>
+    </div>
+  );
 }
