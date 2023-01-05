@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
 import Cookies from 'js-cookie';
 import UserService from "../services/userService";
+import Link from 'next/link';
 
 export default function EditAccount() {
 
@@ -26,7 +27,7 @@ export default function EditAccount() {
     }, []);
 
     const fetchUsers = async () => {
-        const userList = await UserService.getSelfUser();
+        const userList = await UserService.getSelfProfile();
         setUsers(userList);  
         console.log(userList);
         console.log(userList.name); 
@@ -146,10 +147,10 @@ export default function EditAccount() {
                                             <div className="flex gap-5">
 
 
-                                                <link href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <Link href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 
                                                     取消
-                                                </link>
+                                                </Link>
                                                 <button
                                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                     onClick={() => editHandler()}
