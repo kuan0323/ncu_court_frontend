@@ -149,7 +149,7 @@ export default function CourtShow() {
                                             {
                                             message.map(
                                             (message: any) =>
-                                            <tbody className="">
+                                            <tbody key={message.content}>
                                                 <tr className="relative transform scale-100 py-1 whitespace-no-wrap border-b-2 border-blue-100 cursor-default">
                                                     
                                                     
