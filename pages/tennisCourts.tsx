@@ -18,7 +18,7 @@ function classNameS(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function TennisCourts() {
+export default function tennisCourts() {
   const exampleCourt = {
     name: "exampleName",
     price: "examplePrice",
@@ -30,26 +30,44 @@ export default function TennisCourts() {
   const [selectedCourt, setCourt] = useState<any>(exampleCourt);
   const [userSelf, setUserSelf] = useState<any>();
   const [messages, setMessages] = useState<any>([]);
+  const [allReservations, setReservations] = useState<any>([]);
   let inputMessage = "";
   let inputDate = "";
   let inputTime = "";
-  const today = new Date().toISOString().split("T")[0];
+  const date = new Date();
+  const today = date.toISOString().split("T")[0];
   const twoWeeksFromToday = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
     .toISOString()
     .split("T")[0];
+  const currentHour = date.getHours() + ":00";
+  const currentDate = today.replace(/-/g, "/");
+  let rest = true;
+  if (8 <= date.getHours() && date.getHours() <= 20) {
+    rest = false;
+  }
 
   useEffect(() => {
     fetchCourts();
     fetchSelfProfile();
+    fetchAllReservations();
   }, []);
 
   const fetchCourts = async () => {
     const courtList = await courtService.getCourtByType("tennis");
+    for (let i = 0; i < courtList.length; i++) {
+      if (courtList[i].beReserved == false) {
+        courtList.splice(i, 1);
+      }
+    }
     setCourts(courtList);
   };
   const fetchSelfProfile = async () => {
     const selfProfile = await userService.getSelfProfile();
     setUserSelf(selfProfile);
+  };
+  const fetchAllReservations = async () => {
+    const allReservationsList = await reserveService.getAllReservation();
+    setReservations(allReservationsList);
   };
   const fetchMessagesByCourt = async (courtId: string) => {
     const messageList = await messageService.getMessageByCourt(courtId);
@@ -65,22 +83,31 @@ export default function TennisCourts() {
       courtId
     );
   };
-  const checkReserve = async (
+  const checkReserve = (
     date: string,
     time: string,
     courtId: string
-  ): Promise<boolean> => {
-    const allReservations = await reserveService.getReservation();
+  ): boolean => {
     for (let i = 0; i < allReservations.length; i++) {
       if (
         allReservations[i].date == date &&
         allReservations[i].time == time &&
         allReservations[i].court.id == courtId
       ) {
-        return Promise.resolve(true);
+        return true;
       }
     }
-    return Promise.resolve(false);
+    return false;
+  };
+  const getCourtStatus = (courtId: string): string => {
+    if (rest == true) {
+      return "休息中";
+    }
+
+    if (checkReserve(currentDate, currentHour, courtId) == true) {
+      return "有人使用中";
+    }
+    return "無人使用中";
   };
 
   const [open, setOpen] = useState(false);
@@ -121,16 +148,19 @@ export default function TennisCourts() {
                         {court.name}
                       </button>
                     </h3>
-                    <p className="mt-1 text-sm text-gray-500">
-                      {court.beReserved ? (
-                        <span className="text-red-500">已滿</span>
+                    <p className="mt-1 text-sm text-green-500">
+                      {getCourtStatus(court.id) == "無人使用中" ? (
+                        "無人使用中"
                       ) : (
-                        "有空位"
+                        <span className="text-red-500">
+                          {getCourtStatus(court.id)}
+                        </span>
                       )}
                     </p>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
-                    {court.price}
+                  <p className="text-base font-medium text-gray-900">
+                    ${court.price}
+                    <span className="text-xs text-gray-500">/hr</span>
                   </p>
                 </div>
               </div>
@@ -193,11 +223,17 @@ export default function TennisCourts() {
                             開放時間 : 8:00 ~ 20:00
                           </p>
                           <p className="text-theme2 text-xl">
+                            價格 : ${selectedCourt.price}(每小時)
+                          </p>
+                          <p className="text-theme2 text-xl">
                             目前狀態 :{" "}
-                            {selectedCourt.beReserved ? (
-                              <span className="text-red-500">已被預約滿</span>
+                            {getCourtStatus(selectedCourt.id) ==
+                            "無人使用中" ? (
+                              "無人使用中"
                             ) : (
-                              "還有空位"
+                              <span className="text-red-500">
+                                {getCourtStatus(selectedCourt.id)}
+                              </span>
                             )}
                           </p>
                           <div>
@@ -207,6 +243,7 @@ export default function TennisCourts() {
                                 className="mt-2 rounded-xl bg-theme p-1 text-white hover:shadow-lg"
                                 onClick={() => {
                                   setResOpen(false);
+                                  console.log(getCourtStatus(selectedCourt.id));
                                 }}
                               >
                                 <p className="mx-16 my-1 text-white">
@@ -250,24 +287,23 @@ export default function TennisCourts() {
                                 const form = event.target as HTMLFormElement;
 
                                 if (inputTime !== "" && inputDate !== "") {
-                                  let thePromise = checkReserve(
-                                    inputDate,
-                                    inputTime,
-                                    selectedCourt.id
-                                  );
-                                  thePromise.then(function (result) {
-                                    if (result == true) {
-                                      notifyFull();
-                                    } else {
-                                      reserveCourt(
-                                        inputDate,
-                                        inputTime,
-                                        selectedCourt.id
-                                      );
-                                      notifySuccess();
-                                      form.reset();
-                                    }
-                                  });
+                                  if (
+                                    checkReserve(
+                                      inputDate,
+                                      inputTime,
+                                      selectedCourt.id
+                                    ) == true
+                                  ) {
+                                    notifyFull();
+                                  } else {
+                                    reserveCourt(
+                                      inputDate,
+                                      inputTime,
+                                      selectedCourt.id
+                                    );
+                                    notifySuccess();
+                                    form.reset();
+                                  }
                                 } else {
                                   notifyFill();
                                 }
