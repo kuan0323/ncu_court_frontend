@@ -11,27 +11,22 @@ export default class UserService {
     );
     return response.data;
   }
-
+  
   static async editUsers(
-    name: string,
-    phone: string,
-    email: string,
-    oldPassword: string,
-    newPassword: string
-  ) {
-    const response = await api().put(
-      "/api/users",
-      {
-        name: name,
-        phone: phone,
-        email: email,
-        oldPassword: oldPassword,
-        newPassword: newPassword,
-      },
-      { headers: { Authorization: `Bearer ${Cookies.get("service_token")}` } }
+    {name, phone, email, oldPassword, newPassword}
+    :{name?: string, phone?: string, email?: string, oldPassword?: string, newPassword?: string}) {
+    
+        const data: any = {};
+    if (name) data.name = name;
+    if (phone) data.phone = phone;
+    if (email) data.email = email;
+    if (oldPassword) data.oldPassword = oldPassword;
+    if (newPassword) data.newPassword = newPassword;
+    const response = await api().put('/api/users', data,
+        { headers: { Authorization: `Bearer ${Cookies.get('service_token')}` } }
     );
     return response.data;
-  }
+}
 
   static async register(
     name: string,

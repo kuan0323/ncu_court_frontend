@@ -11,10 +11,13 @@ export default function EditAccount() {
     const [showPassword, setShowPassword] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
     const [showPassword3, setShowPassword3] = useState(false);
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState({name:"",
+                                        email:"",
+                                        phone:"",
+                                        studentId:"",
+                                        password:""});
     
 
-    
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
@@ -34,14 +37,175 @@ export default function EditAccount() {
 
     }
     
-    // console.log(users);
-    // console.log(typeof users);
-    //console.log(users.name);
-    
     const editHandler = async () => {
 
         try{
-            const serviceToken = await UserService.editUsers(name, phone, email, oldPassword, newPassword);
+              if(oldPassword === '')//沒改密碼
+              {
+                if(name !=='' && email !=='' && phone !=='')//都改
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(name ==='' && email ==='' && phone!=='')//改phone
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: phone,
+                        email: undefined,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(name==='' && phone==='' && email!=='')//改email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: undefined,
+                        email: email,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(email==='' && phone===''&& name!=='')//改name
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: undefined,
+                        email: undefined,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(email===''&& name!=='' && phone!=='')//改name&phone
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: phone,
+                        email: undefined,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(phone==='' && name!=='' && email!=='')//改name&email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: undefined,
+                        email: email,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else if(name==='' && phone!==''&& email!=='')//改phone&email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: phone,
+                        email: email,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+                else//都沒改
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: undefined,
+                        email: undefined,
+                        oldPassword:users.password,
+                        newPassword:undefined
+                    });
+                }
+              }
+              else//有改密碼
+              {
+                if(name !=='' && email !=='' && phone !=='')//都改
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(name ==='' && email ==='' && phone!=='')//改phone
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: phone,
+                        email: undefined,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(name==='' && phone==='' && email!=='')//改email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: undefined,
+                        email: email,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(email==='' && phone===''&& name!=='')//改name
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: undefined,
+                        email: undefined,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(email===''&& phone!==''&& name!=='')//改name&phone
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: phone,
+                        email: undefined,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(phone===''&&name!=='' && email !=='')//改name&email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: name,
+                        phone: undefined,
+                        email: email,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else if(name==='' && email !=='' && phone!=='')//改phone&email
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: phone,
+                        email: email,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+                else//都沒改
+                {
+                    const serviceToken = await UserService.editUsers({
+                        name: undefined,
+                        phone: undefined,
+                        email: undefined,
+                        oldPassword:oldPassword,
+                        newPassword:newPassword
+                    });
+                }
+              }
             window.location.replace("/editSuccess");
         }
         catch(e){
@@ -59,8 +223,6 @@ export default function EditAccount() {
 
             <div className=" col-span-2 row-span-1  place-items-center">
                 <div className="flex md:flex-col justify-center items-center mt-40 ">
-
-                    {/* modal */}
                     {showModal ? (
                         <div className="fixed  inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
                             <div className="w-[600px]">
@@ -69,40 +231,39 @@ export default function EditAccount() {
 
                                         <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">修改會員資料</h3>
 
-                                        <form className="space-y-6" action="#">
+                                        <form className="space-y-6" action="#" >
+                                        {/* {
 
-                                            {/* {
                                                 users.map(
-                                                    (a: any) =>
-                                                        <div key={a.name}> */}
-
-                                                            <div className="flex gap-5">
+                                                    (user: any) => */}
+                                                    <div>
+                                                        <div className="flex gap-5">
 
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">學號</label>
                                                                     <input type="studentId" name="studentId" id="studentId" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={"user.studentId"} disabled />
+                                                                    placeholder={users.studentId} disabled />
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">電子郵件</label>
-                                                                    <input value={email} onChange={(e)=> setEmail(e.target.value)} type="email" name="email" id="email" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={"user.email"} />
+                                                                    <input type="text" defaultValue={users.email} onChange={(e)=> setEmail(e.target.value)}  name="email" id="email" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                    />
                                                                 </div>
                                                             </div>
 
                                                             <div className="flex gap-5">
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">暱稱</label>
-                                                                    <input value={name} onChange={(e)=> setName(e.target.value)} type="name" name="name" id="name" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={"user.name"} />
+                                                                    <input  defaultValue={users.name} onChange={(e)=> setName(e.target.value)} type="text"  name="name" id="name" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                     />
                                                                 </div>
                                                                 <div className="w-full">
                                                                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="email">聯絡電話</label>
-                                                                    <input value={phone} onChange={(e)=> setPhone(e.target.value)}type="phone" name="phone" id="phone" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
-                                                                    placeholder={"user.phone"} />
+                                                                    <input defaultValue={users.phone} onChange={(e)=> setPhone(e.target.value)}type="text" name="phone" id="phone" className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
+                                                                     />
                                                                 </div>
                                                             </div>
-                                                    {/* </div> */}
+                                                    </div>
                                                             
                                                         
                                                         
@@ -145,16 +306,15 @@ export default function EditAccount() {
                                             </div>
                                             <br></br>
                                             <div className="flex gap-5">
-
-
-                                                <Link href="/home" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-
-                                                    取消
-                                                </Link>
                                                 <button
                                                     className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                                    onClick={() => editHandler()}
-                                                >儲存
+                                                    onClick={() => setShowModal(false)}>
+                                                    取消
+                                                </button>
+                                                <button
+                                                    className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                    onClick={() => editHandler()}>
+                                                    儲存
                                                 </button>
                                             </div>
 
