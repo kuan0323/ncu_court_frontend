@@ -11,7 +11,7 @@ export default function ReservationShow() {
     }, []);
 
     const fetchReservation = async () => {
-        const reservationList = await courtService.getReservation('');
+        const reservationList = await courtService.getReservation();
         setReservation(reservationList);
     }
 
@@ -72,8 +72,8 @@ export default function ReservationShow() {
                                     <tbody key={reservation._id}>
 
                                             <tr className="border-b">
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{reservation.courtId}</td>
-                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{reservation.userId}</td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{reservation.court.name}</td>
+                                                <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{reservation.user.studentId}</td>
                                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{reservation.date}</td>
                                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{reservation.time}</td>
                                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
