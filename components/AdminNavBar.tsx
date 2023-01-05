@@ -12,7 +12,7 @@ export default function NavBar({
   manageUser,
   manageAdmin,
   manageReservation,
-  manageCourt
+  manageCourt,
 }: {
   manageUser: boolean;
   manageAdmin: boolean;
@@ -22,7 +22,11 @@ export default function NavBar({
   const navigation = [
     { name: "會員管理", href: "/userShow", current: manageUser },
     { name: "管理員管理", href: "/adminShow", current: manageAdmin },
-    { name: "預約紀錄管理", href: "/reservationShow", current: manageReservation },
+    {
+      name: "預約紀錄管理",
+      href: "/reservationShow",
+      current: manageReservation,
+    },
     { name: "場地管理", href: "/courtShow", current: manageCourt },
   ];
   return (
@@ -58,7 +62,7 @@ export default function NavBar({
                     width={330}
                     height={320}
                   />
-                  <p className="ml-1.5 text-xl text-white font-black">
+                  <p className="ml-1.5 text-xl text-white font-black align-items-center my-1">
                     中央大學場地預約網
                   </p>
                 </div>
@@ -71,7 +75,7 @@ export default function NavBar({
                         className={classNames(
                           item.current
                             ? "text-theme2 font-extrabold hover:text-teal-700"
-                            : "text-white hover:text-theme2 font-extrabold",
+                            : "text-white font-extrabold  hover:text-theme2 ",
                           "px-3 py-2 rounded-md text-sm font-medium text-decoration-none"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -85,7 +89,7 @@ export default function NavBar({
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
-                  className="rounded-xl bg-theme2 p-1 text-white hover:ring-2 hover:ring-teal-700"
+                  className="rounded-xl bg-theme2 p-1 text-white hover:bg-teal-700"
                 >
                   <a href="#" className="text-decoration-none">
                     <p className="mx-4 my-0.5 text-white">登出</p>
@@ -104,9 +108,9 @@ export default function NavBar({
                   href={item.href}
                   className={classNames(
                     item.current
-                      ? "text-theme2 font-extrabold"
+                      ? "text-theme2 font-extrabold hover:text-teal-700"
                       : "text-white hover:text-theme2 font-extrabold",
-                    "block px-3 py-2 rounded-md text-base font-medium"
+                    "block px-3 py-2 rounded-md text-base font-medium text-decoration-none"
                   )}
                   aria-current={item.current ? "page" : undefined}
                 >
