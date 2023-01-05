@@ -11,7 +11,6 @@ export default class UserService {
     );
     return response.data;
   }
-
   
   static async editUsers(
     {name, phone, email, oldPassword, newPassword}
