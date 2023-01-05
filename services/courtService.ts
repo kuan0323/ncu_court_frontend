@@ -43,7 +43,7 @@ export default class courtService {
     return response.data;
   }
 
-  static async getReservaiton() {
+  static async getReservation() {
     const response = await api().get("/api/reservations", {
       headers: { Authorization: `Bearer ${Cookies.get("service_token")}` },
       params: {},

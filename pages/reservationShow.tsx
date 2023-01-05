@@ -11,7 +11,7 @@ export default function ReservationShow() {
     }, []);
 
     const fetchReservation = async () => {
-        const reservationList = await courtService.getReservaiton('');
+        const reservationList = await courtService.getReservation('');
         setReservation(reservationList);
     }
 
