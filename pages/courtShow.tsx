@@ -31,11 +31,12 @@ export default function CourtShow() {
         window.location.reload();
     }
 
-    const editHandler = async (id: string) => {
-        await courtService.deleteCourt(id);
-        window.location.reload();
+    const deleteMessageHandler = async (id: string, courtId: string) => {
+        await courtService.deleteMessage(id);
+        //window.location.reload();
+        const messageList = await courtService.getMessageByCourt(courtId);
+        setMessage(messageList);
     }
-
 
     return (
         <div>
@@ -45,7 +46,7 @@ export default function CourtShow() {
                     <div>
                         <h2 className="inline-block text-lg text-gray-700 ml-5 mt-5">瀏覽場地</h2>
                         <button type="button" className="inline-block ml-5 px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out ">
-                            <a href="http://localhost:3000/courtCreate"  className="text-white" >新增場地</a>
+                            <a href="http://localhost:3000/courtCreate" className="text-white text-decoration-none" >新增場地</a>
                         </button>
                     </div>
                     <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -148,7 +149,7 @@ export default function CourtShow() {
                                             {
                                             message.map(
                                             (message: any) =>
-                                            <tbody key={message.content}>
+                                            <tbody className="">
                                                 <tr className="relative transform scale-100 py-1 whitespace-no-wrap border-b-2 border-blue-100 cursor-default">
                                                     
                                                     
@@ -159,10 +160,11 @@ export default function CourtShow() {
                                                     </td>
 
                                                     <td className="pl-5 pr-3 whitespace-no-wrap">
-                                                        <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除留言</button>
+                                                        <button onClick={() => deleteMessageHandler(message.id, message.courtId)} type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除留言</button>
 
                                                     </td>
                                                 </tr>
+                                               
                                             </tbody>)}
                                         </table>
                                     </div>
