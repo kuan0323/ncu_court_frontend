@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import Head from 'next/head'
+import React, { useEffect, useState } from "react";
 import NavBar from '../components/NavBar'
 import Cookies from 'js-cookie';
 import UserService from "../services/userService";
-import UserShow from "./userShow";
+import Link from 'next/link';
 
 export default function EditAccount() {
 
@@ -29,8 +30,11 @@ export default function EditAccount() {
     }, []);
 
     const fetchUsers = async () => {
-        const userList = await UserService.getSelfUser();
-        setUsers(userList);
+        const userList = await UserService.getSelfProfile();
+        setUsers(userList);  
+        console.log(userList);
+        console.log(userList.name); 
+
     }
     
     const editHandler = async () => {

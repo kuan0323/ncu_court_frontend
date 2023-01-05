@@ -19,7 +19,7 @@ export default function NavBar({
 }) {
   const navigation = [
     { name: "首頁", href: "/home", current: mainPage },
-    { name: "我的預約", href: "#", current: myReserve },
+    { name: "我的預約", href: "/reserveRecord", current: myReserve },
     { name: "我的帳戶", href: "/editAccount", current: myAccount },
   ];
   return (
@@ -43,7 +43,7 @@ export default function NavBar({
                 <div className="flex flex-shrink-0 items-center">
                   <Image
                     className="block h-8 w-auto lg:hidden"
-                    src="/static/images/kid.png"
+                    src="/../public/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}

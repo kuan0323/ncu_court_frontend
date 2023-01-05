@@ -1,12 +1,12 @@
 import AdminNavBar from "../components/AdminNavBar";
 import { useEffect, useState } from "react";
 import adminUserService from "../services/adminUserService";
-import exampleService from "../services/courtService";
 import Cookies from 'js-cookie';
 
 export default function AdminShow(){
 
     const [users, setUsers] = useState([]);
+
     useEffect(() => {       
         fetchAdmin();
     }, []);
@@ -17,7 +17,7 @@ export default function AdminShow(){
     }*/
 
     const fetchAdmin = async () => {
-        const userList = await exampleService.searchByDate('', 'admin');
+        const userList = await adminUserService.getUsers('', 'admin','');
         setUsers(userList);
     }
 
@@ -76,7 +76,6 @@ export default function AdminShow(){
                                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <div className="flex space-x-4 ">
                                                 <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">刪除</button>
-                                                <button type="button" className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out">修改</button>
                                             </div>
                                         </td>
                                         </tr>
