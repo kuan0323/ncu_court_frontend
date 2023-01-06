@@ -15,7 +15,7 @@ export default function Home() {
             <div className="mb-8">
               <Image
                 className="object-center object-cover rounded-lg h-52 w-full"
-                src="/../public/static/images/basketball.jpeg"
+                src="/static/images/basketball.jpeg"
                 width={100}
                 height={320}
                 alt="basketball"
@@ -54,7 +54,7 @@ export default function Home() {
             <div className="mb-8">
               <Image
                 className="object-center object-cover rounded-lg h-52 w-full"
-                src="/../public/static/images/badminton.jpeg"
+                src="/static/images/badminton.jpeg"
                 width={100}
                 height={320}
                 alt="badminton"
@@ -93,7 +93,7 @@ export default function Home() {
             <div className="mb-8">
               <Image
                 className="object-center object-cover rounded-lg h-52 w-full"
-                src="/../public/static/images/tennis.jpg"
+                src="/static/images/tennis.jpg"
                 width={100}
                 height={320}
                 alt="tennis"
@@ -132,7 +132,7 @@ export default function Home() {
             <div className="mb-8">
               <Image
                 className="object-center object-cover rounded-lg h-52 w-full"
-                src="/../public/static/images/volleyball.jpeg"
+                src="/static/images/volleyball.jpeg"
                 width={100}
                 height={320}
                 alt="volleyball"

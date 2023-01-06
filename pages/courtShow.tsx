@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function CourtShow() {
   const [open, setOpen] = useState(false);
@@ -74,17 +75,18 @@ export default function CourtShow() {
             <h2 className="inline-block text-lg text-gray-700 ml-5 mt-5">
               瀏覽場地
             </h2>
-            <button
-              type="button"
-              className="inline-block ml-5 px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out "
+
+            <Link
+              href="./courtCreate"
+              className="text-white text-decoration-none"
             >
-              <a
-                href="./courtCreate"
-                className="text-white text-decoration-none"
+              <button
+                type="button"
+                className="inline-block ml-5 px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out "
               >
                 新增場地
-              </a>
-            </button>
+              </button>
+            </Link>
           </div>
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">

@@ -16,8 +16,10 @@ export default function Login() {
 
     const loginHandler = async () => {
         try {
-            const serviceToken = await AuthService.login(studentId, password);
-            Cookies.set('service_token', serviceToken);
+            if (studentId != "" && password != "") {
+                const serviceToken = await AuthService.login(studentId, password);
+                Cookies.set('service_token', serviceToken);
+            }
 
             const profile = await UserService.getSelfProfile();
             if (profile.role == "regular") {
