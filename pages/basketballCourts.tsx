@@ -287,6 +287,7 @@ export default function BasketballCourts() {
                                 const form = event.target as HTMLFormElement;
 
                                 if (inputTime !== "" && inputDate !== "") {
+                                  fetchAllReservations();
                                   if (
                                     checkReserve(
                                       inputDate,
@@ -295,6 +296,7 @@ export default function BasketballCourts() {
                                     ) == true
                                   ) {
                                     notifyFull();
+                                    form.reset();
                                   } else {
                                     reserveCourt(
                                       inputDate,
@@ -302,10 +304,12 @@ export default function BasketballCourts() {
                                       selectedCourt.id
                                     );
                                     notifySuccess();
+                                    fetchAllReservations();
                                     form.reset();
                                   }
                                 } else {
-                                  notifyFill();
+                                  notifyFull();
+                                  form.reset();
                                 }
                               }}
                             >
@@ -325,6 +329,7 @@ export default function BasketballCourts() {
                                   inputDate = event.target.value;
                                   inputDate = inputDate.replace(/-/g, "/");
                                 }}
+                                required
                               />
                               <br />
                               <label
@@ -340,6 +345,7 @@ export default function BasketballCourts() {
                                 onChange={(event) => {
                                   inputTime = event.target.value;
                                 }}
+                                required
                               >
                                 <option disabled selected>
                                   -- 選擇時段 --

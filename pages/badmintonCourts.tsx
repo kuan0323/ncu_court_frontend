@@ -287,6 +287,7 @@ export default function BadmintonCourts() {
                                 const form = event.target as HTMLFormElement;
 
                                 if (inputTime !== "" && inputDate !== "") {
+                                  fetchAllReservations();
                                   if (
                                     checkReserve(
                                       inputDate,
@@ -295,6 +296,7 @@ export default function BadmintonCourts() {
                                     ) == true
                                   ) {
                                     notifyFull();
+                                    form.reset();
                                   } else {
                                     reserveCourt(
                                       inputDate,
@@ -302,10 +304,12 @@ export default function BadmintonCourts() {
                                       selectedCourt.id
                                     );
                                     notifySuccess();
+                                    fetchAllReservations();
                                     form.reset();
                                   }
                                 } else {
-                                  notifyFill();
+                                  notifyFull();
+                                  form.reset();
                                 }
                               }}
                             >
