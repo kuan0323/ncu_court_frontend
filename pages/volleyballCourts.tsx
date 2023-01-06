@@ -18,7 +18,7 @@ function classNameS(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function volleyballCourts() {
+export default function VolleyballCourts() {
   const exampleCourt = {
     name: "exampleName",
     price: "examplePrice",
