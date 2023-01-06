@@ -29,23 +29,10 @@ export default class courtService {
         formData.append("name", name);
         formData.append("price", price);
         formData.append("type", type);
-
-        console.log(photo);
-        const response = await api().post('/api/courts', {
+        const response = await api().post('/api/courts', formData, {
             headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
-            params: {
-                photo: photo,
-                name: name,
-                price: price,
-                type: type
-            },
-            body: {
-                data: formData
-            }
         });
-        //  確定有抓到值了，但payload永遠少了photo QQ
-        console.log(photo);
-        // return response.data;
+        return response.data;
     }
 
     static async editCourt(id: string, photo: any, name: string, price: string, type: string) {
