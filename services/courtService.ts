@@ -11,6 +11,17 @@ export default class courtService {
         return response.data;
     }
 
+    static async getCourtByName(name: string) {
+        const response = await api().get("/api/courts", {
+            headers: { Authorization: `Bearer ${Cookies.get("service_token")}` },
+            params: {
+                name: name
+            },
+        });
+        console.log(response.data[0])
+        return response.data[0];
+    }
+
     // photo不確定要宣告什麼型態，只有any不會跳錯
     static async createCourt(photo: any, name: string, price: string, type: string) {
         const formData = new FormData();
@@ -35,6 +46,29 @@ export default class courtService {
         //  確定有抓到值了，但payload永遠少了photo QQ
         console.log(photo);
         // return response.data;
+    }
+
+    static async editCourt(id: string, photo: any, name: string, price: string, type: string) {
+        const formData = new FormData();
+        formData.append("photo", photo); 
+        formData.append("name", name);
+        formData.append("price", price);
+        formData.append("type", type);
+
+        console.log(photo);
+        const response = await api().put(`/api/courts/${id}`, {
+            headers: { Authorization: `Bearer ${Cookies.get('service_token')}` },
+            params: {
+                photo: photo,
+                name: name,
+                price: price,
+                type: type
+            },
+            body: {
+                data: formData
+            }
+        });
+        console.log(photo);
     }
 
     // 好像用不到? 先註解掉
