@@ -10,7 +10,7 @@ export default function UserShow() {
     //fetchUsersLastModified();
   }, []);
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   //默認排序、按註冊日期排序
   const fetchUsers = async () => {
@@ -45,7 +45,7 @@ export default function UserShow() {
   return (
     <div>
       <AdminNavBar
-        manageUser={false}
+        manageUser={true}
         manageAdmin={false}
         manageReservation={false}
         manageCourt={false}

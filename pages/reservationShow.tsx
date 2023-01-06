@@ -40,7 +40,7 @@ export default function ReservationShow() {
       <AdminNavBar
         manageUser={false}
         manageAdmin={false}
-        manageReservation={false}
+        manageReservation={true}
         manageCourt={false}
       ></AdminNavBar>
       <div className="flex">

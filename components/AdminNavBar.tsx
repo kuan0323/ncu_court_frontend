@@ -80,7 +80,7 @@ export default function NavBar({
                         className={classNames(
                           item.current
                             ? "text-theme2 font-extrabold hover:text-teal-700"
-                            : "text-white font-extrabold  hover:text-theme2 ",
+                            : "text-green-50 font-extrabold  hover:text-theme2 ",
                           "px-3 py-2 rounded-md text-sm font-medium text-decoration-none"
                         )}
                         aria-current={item.current ? "page" : undefined}
