@@ -132,7 +132,7 @@ export default function Home() {
             <div className="mb-8">
               <Image
                 className="object-center object-cover rounded-lg h-52 w-full"
-                src="/images/volleyball.jpeg"
+                src="/static/images/volleyball.jpeg"
                 width={100}
                 height={320}
                 alt="volleyball"
