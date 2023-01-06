@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function CourtShow() {
   const [open, setOpen] = useState(false);
@@ -78,12 +79,12 @@ export default function CourtShow() {
               type="button"
               className="inline-block ml-5 px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out "
             >
-              <a
-                href="http://localhost:3000/courtCreate"
+              <Link
+                href="/courtCreate"
                 className="text-white text-decoration-none"
               >
                 新增場地
-              </a>
+              </Link>
             </button>
           </div>
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
