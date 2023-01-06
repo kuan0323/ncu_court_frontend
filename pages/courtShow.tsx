@@ -330,6 +330,7 @@ export default function CourtShow() {
                                             rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
                                     id="court_name"
                                     placeholder={courtEdit.name}
+                                    required
                                   />
                                 </div>
                               </div>
@@ -348,6 +349,7 @@ export default function CourtShow() {
                                                 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
                                     id="exampleText0"
                                     placeholder={courtEdit.price}
+                                    required
                                   />
                                 </div>
                               </div>
@@ -365,6 +367,7 @@ export default function CourtShow() {
                                                         block w-full px-3 ml-5 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300
                                                     rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
                                     aria-label="Default select example"
+                                    required
                                   >
                                     <option selected>選擇場地類型</option>
                                     <option value="tennis">網球場</option>
@@ -387,6 +390,7 @@ export default function CourtShow() {
                                                     rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
                                     type="file"
                                     id="court_photo"
+                                    required
                                   ></input>
                                 </div>
                               </div>
