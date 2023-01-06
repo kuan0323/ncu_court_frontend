@@ -315,7 +315,15 @@ export default function CourtShow() {
                             </h2>
 
                             {/* <form action="courtShow" encType="form-data"> */}
-                            <form encType="form-data">
+                            <form
+                              encType="form-data"
+                              onSubmit={(event) => {
+                                event.preventDefault();
+                                editCourt();
+                                const form = event.target as HTMLFormElement;
+                                form.reset();
+                              }}
+                            >
                               <div className="flex justify-start">
                                 <div className="mb-3 xl:w-96">
                                   {/* 場地名稱 */}
@@ -398,8 +406,7 @@ export default function CourtShow() {
                               <div className="mb-3 w-96 flex space-x-4 justify-end mt-5">
                                 <div className="">
                                   <button
-                                    type="button"
-                                    onClick={() => editCourt()}
+                                    type="submit"
                                     className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out"
                                   >
                                     確認
