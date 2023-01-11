@@ -75,17 +75,18 @@ export default function CourtShow() {
             <h2 className="inline-block text-lg text-gray-700 ml-5 mt-5">
               瀏覽場地
             </h2>
-            <button
-              type="button"
-              className="inline-block ml-5 px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out "
+
+            <Link
+              href="./courtCreate"
+              className="text-white text-decoration-none"
             >
-              <Link
-                href="/courtCreate"
-                className="text-white text-decoration-none"
+              <button
+                type="button"
+                className="inline-block ml-5 px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out "
               >
                 新增場地
-              </Link>
-            </button>
+              </button>
+            </Link>
           </div>
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -314,7 +315,15 @@ export default function CourtShow() {
                             </h2>
 
                             {/* <form action="courtShow" encType="form-data"> */}
-                            <form encType="form-data">
+                            <form
+                              encType="form-data"
+                              onSubmit={(event) => {
+                                event.preventDefault();
+                                editCourt();
+                                const form = event.target as HTMLFormElement;
+                                form.reset();
+                              }}
+                            >
                               <div className="flex justify-start">
                                 <div className="mb-3 xl:w-96">
                                   {/* 場地名稱 */}
@@ -329,6 +338,7 @@ export default function CourtShow() {
                                             rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
                                     id="court_name"
                                     placeholder={courtEdit.name}
+                                    required
                                   />
                                 </div>
                               </div>
@@ -347,6 +357,7 @@ export default function CourtShow() {
                                                 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
                                     id="exampleText0"
                                     placeholder={courtEdit.price}
+                                    required
                                   />
                                 </div>
                               </div>
@@ -364,6 +375,7 @@ export default function CourtShow() {
                                                         block w-full px-3 ml-5 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300
                                                     rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
                                     aria-label="Default select example"
+                                    required
                                   >
                                     <option selected>選擇場地類型</option>
                                     <option value="tennis">網球場</option>
@@ -386,6 +398,7 @@ export default function CourtShow() {
                                                     rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-[#69CBBF] focus:outline-none"
                                     type="file"
                                     id="court_photo"
+                                    required
                                   ></input>
                                 </div>
                               </div>
@@ -393,8 +406,7 @@ export default function CourtShow() {
                               <div className="mb-3 w-96 flex space-x-4 justify-end mt-5">
                                 <div className="">
                                   <button
-                                    type="button"
-                                    onClick={() => editCourt()}
+                                    type="submit"
                                     className="inline-block px-6 py-2.5 bg-[#69CBBF] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#40948A] hover:shadow-lg focus:bg-[#40948A] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#40948A] active:shadow-lg transition duration-150 ease-in-out"
                                   >
                                     確認
