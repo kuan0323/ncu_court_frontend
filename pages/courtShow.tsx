@@ -231,7 +231,7 @@ export default function CourtShow() {
                                           {message.content}
                                         </div>
                                         <div className="text-left px-2 leading-5 text-xs text-gray-500">
-                                          {message.createdTime}
+                                          {new Date(message.createdTime).toLocaleString()}
                                         </div>
                                       </td>
 
