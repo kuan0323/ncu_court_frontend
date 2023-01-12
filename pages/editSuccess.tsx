@@ -26,7 +26,7 @@ export default function EditSuccess() {
 
             <div className="container">
                 {/* <Image
-                    src="/../public/static/images/kid.png"
+                    src="/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}
@@ -45,7 +45,7 @@ export default function EditSuccess() {
                                     <div className="position-absolute top-40 start-50 translate-middle">
 
                                         <Image
-                                            src="/../public/static/images/editSuccess.png"
+                                            src="/static/images/editSuccess.png"
                                             alt="login_success"
                                             width={150}
                                             height={150}

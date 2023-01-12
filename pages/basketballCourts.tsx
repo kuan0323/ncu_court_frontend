@@ -18,7 +18,7 @@ function classNameS(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function TennisCourts() {
+export default function BasketballCourts() {
   const exampleCourt = {
     name: "exampleName",
     price: "examplePrice",
@@ -53,7 +53,7 @@ export default function TennisCourts() {
   }, []);
 
   const fetchCourts = async () => {
-    const courtList = await courtService.getCourtByType("tennis");
+    const courtList = await courtService.getCourtByType("basketball");
     for (let i = 0; i < courtList.length; i++) {
       if (courtList[i].beReserved == false) {
         courtList.splice(i, 1);
@@ -121,7 +121,7 @@ export default function TennisCourts() {
         <Toaster />
         <div className=" mx-auto max-w-2xl py-8 px-4 sm:py-16 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-theme">
-            網球場列表
+            籃球場列表
           </h2>
           <div className="bg-gray-400 h-0.5"></div>
           <div className="mt-16 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
@@ -329,6 +329,7 @@ export default function TennisCourts() {
                                   inputDate = event.target.value;
                                   inputDate = inputDate.replace(/-/g, "/");
                                 }}
+                                required
                               />
                               <br />
                               <label
@@ -344,6 +345,7 @@ export default function TennisCourts() {
                                 onChange={(event) => {
                                   inputTime = event.target.value;
                                 }}
+                                required
                               >
                                 <option disabled selected>
                                   -- 選擇時段 --

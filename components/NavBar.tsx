@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Fragment } from "react";
-import cookies from 'js-cookie';
+import cookies from "js-cookie";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -26,7 +26,7 @@ export default function NavBar({
   ];
   const eraseCookies = async () => {
     cookies.remove("service_token");
-  }
+  };
   return (
     <Disclosure as="nav" className="bg-theme">
       {({ open }) => (
@@ -48,7 +48,7 @@ export default function NavBar({
                 <div className="flex flex-shrink-0 items-center">
                   <Image
                     className="block h-8 w-auto lg:hidden"
-                    src="/../public/static/images/kid.png"
+                    src="/static/images/kid.png"
                     alt="kid"
                     width={330}
                     height={320}
@@ -60,7 +60,7 @@ export default function NavBar({
                     width={330}
                     height={320}
                   />
-                  <p className="ml-1.5 text-xl text-white font-black">
+                  <p className="ml-1.5 text-xl text-white font-black align-items-center my-1">
                     中央大學場地預約網
                   </p>
                 </div>
@@ -73,8 +73,8 @@ export default function NavBar({
                         className={classNames(
                           item.current
                             ? "text-theme2 font-extrabold hover:text-teal-700"
-                            : "text-white hover:text-theme2 font-extrabold",
-                          "px-3 py-2 rounded-md text-sm font-medium text-decoration-none"
+                            : "text-green-50 hover:text-theme2 font-extrabold",
+                          "px-3 py-2 rounded-md text-sm font-medium text-decoration-none "
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -87,7 +87,7 @@ export default function NavBar({
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
-                  className="rounded-xl bg-theme2 p-1 text-white hover:ring-2 hover:ring-teal-700"
+                  className="rounded-xl bg-theme2 p-1 text-white hover:bg-teal-700"
                   onClick={() => eraseCookies()}
                 >
                   <Link href="/" className="text-decoration-none">
@@ -107,9 +107,9 @@ export default function NavBar({
                   href={item.href}
                   className={classNames(
                     item.current
-                      ? "text-theme2 font-extrabold"
+                      ? "text-theme2 font-extrabold hover:text-teal-700"
                       : "text-white hover:text-theme2 font-extrabold",
-                    "block px-3 py-2 rounded-md text-base font-medium"
+                    "block px-3 py-2 rounded-md text-base font-medium text-decoration-none"
                   )}
                   aria-current={item.current ? "page" : undefined}
                 >
