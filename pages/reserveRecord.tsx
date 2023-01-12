@@ -5,17 +5,18 @@ import styles from "../styles/Home.module.css";
 import Button from "../components/Button";
 import reserveService from "../services/reserveService";
 import { Link } from "react-router-dom";
+import courtService from "../services/courtService";
 
 export default function ReserveRecord() {
-  const [users, setUsers] = useState([]);
+  const [reservation, setReservations] = useState([]);
   // const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     fetchReserves();
   }, []);
 
   const fetchReserves = async () => {
-    const userList = await reserveService.getReservation();
-    setUsers(userList);
+    const reservationList = await courtService.getReservation();
+    setReservations(reservationList);
   };
 
   const cancelHandler = async (reservationId: string) => {
@@ -89,26 +90,26 @@ export default function ReserveRecord() {
                           操作
                         </th>
                       </tr>
-                      {users.map((user: any) => (
-                        <tr key={user.name}>
+                      {reservation.map((reservation: any) => (
+                        <tr key={reservation.name}>
                           <td>
                             <p className="text-sm font-medium text-gray-900 text-center">
-                              {user.court.name}
+                              {reservation.court.name}
                             </p>
                           </td>
                           <td>
                             <p className="text-sm font-medium text-gray-900 text-center">
-                              {user.date}
+                              {reservation.date}
                             </p>
                           </td>
                           <td>
                             <p className="text-sm font-medium text-gray-900 text-center">
-                              {user.time}
+                              {reservation.time}
                             </p>
                           </td>
                           <td>
                             <p className="text-sm font-medium text-gray-900 text-center">
-                              {user.court.price}
+                              {reservation.court.price}
                             </p>
                           </td>
                           <td
@@ -117,7 +118,7 @@ export default function ReserveRecord() {
                           >
                             <button
                               className="text-white p-2 rounded bg-teal-500 hover:bg-teal-600"
-                              onClick={() => cancelHandler(user.id)}
+                              onClick={() => cancelHandler(reservation.id)}
                             >
                               取消預約
                             </button>
